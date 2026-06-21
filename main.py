@@ -452,61 +452,27 @@ class TinyAPIPlugin(Star):
                 if not text_content:
                     text_content = "\n\n".join(c for _, c in text_items)
 
-            # 发送媒体内容 + 文字内容
+            # 构建统一的结果对象：文字和媒体都加到同一条消息的 chain 里
             result_obj = MessageEventResult()
-            sent_media = False
-            sent_text = False
 
-            # 先发文字（作为消息主体）
+            # 先加文字（如果有）
             if text_content:
-                result_obj = MessageEventResult().message(text_content)
-                sent_text = True
+                result_obj.message(text_content)
 
-            # 媒体附加到结果中
+            # 再追加媒体（图片/视频/音频）
             for media_type, content in media_items:
                 if media_type == "image":
-                    logger.info(f"[TinyAPI] 发送图片: {content[:80]}")
-                    if sent_text:
-                        # 已有文字，图片用单独消息发送
-                        try:
-                            await event.send(MessageEventResult().url_image(content))
-                        except Exception:
-                            # send 不可用，合并到同一条消息
-                            pass
-                    else:
-                        result_obj = MessageEventResult().url_image(content)
-                    sent_media = True
-                    break
+                    logger.info(f"[TinyAPI] 追加图片到消息: {content[:80]}")
+                    result_obj.chain.append(Comp.Image.fromURL(url=content))
                 elif media_type == "video":
-                    logger.info(f"[TinyAPI] 发送视频: {content[:80]}")
-                    r = MessageEventResult()
-                    r.chain.append(Comp.Video.fromURL(url=content))
-                    if sent_text:
-                        try:
-                            await event.send(r)
-                        except Exception:
-                            pass
-                    else:
-                        event.set_result(r)
-                    sent_media = True
+                    logger.info(f"[TinyAPI] 追加视频到消息: {content[:80]}")
+                    result_obj.chain.append(Comp.Video.fromURL(url=content))
                 elif media_type == "audio":
-                    logger.info(f"[TinyAPI] 发送音频: {content[:80]}")
-                    r = MessageEventResult()
-                    r.chain.append(Comp.Record(file=content, url=content))
-                    if sent_text:
-                        try:
-                            await event.send(r)
-                        except Exception:
-                            pass
-                    else:
-                        event.set_result(r)
-                    sent_media = True
+                    logger.info(f"[TinyAPI] 追加音频到消息: {content[:80]}")
+                    result_obj.chain.append(Comp.Record(file=content, url=content))
 
-            # 若没有单独发送结果，则发送
-            if not sent_media and text_content:
-                event.set_result(MessageEventResult().message(text_content))
-            elif sent_text and not sent_media:
-                event.set_result(result_obj)
+            event.set_result(result_obj)
+            logger.info(f"[TinyAPI] 已发送结果: 文字={'有' if text_content else '无'} 媒体数={len(media_items)}")
 
         else:
             # 失败：发送错误信息
