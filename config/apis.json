@@ -3938,6 +3938,18 @@
         "all": "true=返回含过期，默认只返回有效码"
       },
       "required_params": []
+    },
+    {
+      "name": "古诗词",
+      "path": "/v1/poem",
+      "description": "随机返回古诗词，支持指定数量，含作者、出处",
+      "keywords": [
+        "古诗词"
+      ],
+      "params": {
+        "count": "返回数量（1-10，默认1）"
+      },
+      "required_params": []
     }
   ]
 }
