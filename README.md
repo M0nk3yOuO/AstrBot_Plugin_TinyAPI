@@ -1,11 +1,11 @@
 # AstrBot_Plugin_TinyAPI
 
 [![AstrBot Plugin](https://img.shields.io/badge/AstrBot-插件-green)](https://github.com/AstrBotDevs/AstrBot)
-[![Version](https://img.shields.io/badge/version-1.7.9-blue)](https://github.com/M0nk3yOuO/AstrBot_Plugin_TinyAPI)
+[![Version](https://img.shields.io/badge/version-1.8.0-blue)](https://github.com/M0nk3yOuO/AstrBot_Plugin_TinyAPI)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 
-AstrBot 插件，聚合调用 TinyAPI 的 200+ 免费 API 接口，支持关键词快捷调用、智能参数提示，图片/音频/视频自动识别并直接发送。
+AstrBot 插件，聚合调用 TinyAPI 的 300+ 免费 API 接口，支持关键词快捷调用、智能参数提示，图片/音频/视频自动识别并直接发送。
 
 ## 📖 目录
 
@@ -462,6 +462,16 @@ AstrBot_Plugin_TinyAPI/
 - `os`：文件路径处理
 
 ## 📝 更新日志
+
+### v1.8.0 (2026-06-21)
+
+- 🖼️📝 **媒体+文字同时输出**：API 返回图片/视频/音频时，自动将媒体和文字说明合并到同一条消息发送，不再只发媒体丢失文字
+- 🚫 **限制单条消息图片数量**：单条消息最多发送 5 张图片，避免 QQ NT 接口因图片过多报错（retcode=1200）
+- 📝 **LLM 改写优化**：改写 prompt 增强，不再提及 JSON 字段名（如 json_data、raw_data 等），空值/空列表自动跳过不提及，输出增加换行方便手机阅读
+- 🔒 **日志脱敏**：API 调用日志中的 `apikey` 值显示为 `***`，不再明文打印
+- ❓ **新增「？查询」功能**：关键词后加 `？` 或 `?`（如 `火车？`），Bot 返回该接口的描述和参数说明，不调用 API
+- 🛡️ 新增 `.gitignore`，防止误提交敏感文件
+- 🐛 修复 `_send_result` 逻辑：媒体和文字正确同时发送（之前文字会丢失）
 
 ### v1.7.11 (2026-06-21)
 - 🐛 修复 `_send_result` 逻辑：媒体和文字现在正确同时发送到同一条消息中（之前文字会丢失）

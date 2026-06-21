@@ -1,6 +1,6 @@
 name: "TinyAPI聚合插件"
 author: "M0nk3yOuO"
-version: "1.7.9"
+version: "1.8.0"
 description: "调用TinyAPI的290+免费API接口，支持关键词快捷调用，图片/音频/视频自动识别并直接发送，递归搜索响应中的媒体URL，支持关键词与图片同时发送"
 repo: "https://github.com/M0nk3yOuO/AstrBot_Plugin_TinyAPI"
 tags: ["api", "tinyapi", "聚合", "工具", "图片识别"]
