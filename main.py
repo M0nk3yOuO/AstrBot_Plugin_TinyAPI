@@ -764,10 +764,14 @@ class TinyAPIPlugin(Star):
             return
 
         user_id = event.get_sender_id()
+        # 获取纯文本消息（过滤掉@提及等非文本内容）
         raw_message = event.message_str.strip()
+        # 过滤 [At:...] 等平台特定标记（QQ/Telegram等平台发消息时可能带@标记）
+        raw_message = re.sub(r'\[At:[^\]]+\]', '', raw_message).strip()
         # 去掉所有 ？/?（支持消息中间也带？的情况）
         message_clean = raw_message.replace("？", "").replace("?", "")
-        is_help_query = raw_message.endswith("？") or raw_message.endswith("?")
+        # 判断是否为帮助查询（消息纯文本部分以？或?结尾）
+        is_help_query = raw_message.rstrip().endswith("？") or raw_message.rstrip().endswith("?")
         message_lower = message_clean.lower()
 
         # 0. 先尝试提取图片（如果有），返回图片信息字典
