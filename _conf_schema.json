@@ -1,0 +1,32 @@
+{
+  "api_key": {
+    "title": "TinyAPI Key",
+    "description": "TinyAPI的API密钥 (sk_xxx格式)",
+    "type": "string",
+    "default": ""
+  },
+  "base_url": {
+    "title": "API基础URL",
+    "description": "TinyAPI的基础URL地址",
+    "type": "string",
+    "default": "https://api.tinyaii.top"
+  },
+  "timeout": {
+    "title": "请求超时时间(秒)",
+    "description": "API请求超时时间",
+    "type": "int",
+    "default": 30
+  },
+  "enable_keyword_match": {
+    "title": "启用关键词匹配",
+    "description": "是否启用自动关键词匹配调用API",
+    "type": "bool",
+    "default": true
+  },
+  "enable_llm_rewrite": {
+    "title": "启用LLM回复改写",
+    "description": "开启后，返回结果由LLM润色（需要AstrBot配置可用的LLM提供商）",
+    "type": "bool",
+    "default": true
+  }
+}

@@ -1,0 +1,3943 @@
+{
+  "apis": [
+    {
+      "name": "12306火车查询",
+      "path": "/v1/12306",
+      "description": "查询火车站当日车次信息，返回车次号、始发终到站、出发时间、候车室/检票口、运行状态。支持分页。",
+      "keywords": [
+        "12306"
+      ],
+      "params": {
+        "msg": "车站名",
+        "page": "页码"
+      },
+      "required_params": [
+        "msg"
+      ]
+    },
+    {
+      "name": "123云盘直链解析",
+      "path": "/v1/123pan/parse",
+      "description": "解析123云盘分享链接，返回文件名称和直链下载地址。支持带提取码的链接（传入 pwd 参数）。",
+      "keywords": [
+        "123云盘"
+      ],
+      "params": {
+        "url": "123云盘分享链接",
+        "pwd": "提取码（如有）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "缩写查询",
+      "path": "/v1/abbr",
+      "description": "查询英文缩写的全称和含义，收录80+常见缩写",
+      "keywords": [
+        "缩写"
+      ],
+      "params": {
+        "q": "缩写关键词"
+      },
+      "required_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "AI绘画【高级模型】",
+      "path": "/v1/ai/paint",
+      "description": "AI绘画【高级模型】，支持多种风格和分辨率。支持的分辨率组合：768x768、1024x1024、576x1024、768x1024、1024x576、1024x768。注意：生成的图片会带有讯飞平台水印，无法去除。",
+      "keywords": [
+        "AI"
+      ],
+      "params": {
+        "prompt": "绘画描述文字",
+        "width": "宽度，可选：768 / 1024（默认768）",
+        "height": "高度，可选：768 / 1024 / 576（默认768）",
+        "style": "绘画风格，可选：油画 / 水彩 / 素描 / 动漫 / 写实 / 赛博朋克 / 国风（不传则由AI自动判断）"
+      },
+      "required_params": [
+        "prompt"
+      ]
+    },
+    {
+      "name": "明日方舟敌人详情",
+      "path": "/v1/ak/enemy",
+      "description": "获取明日方舟敌人详细信息，包括属性、能力、登场活动等",
+      "keywords": [
+        "明日方舟敌人详情"
+      ],
+      "params": {
+        "name": "敌人名称"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "明日方舟敌人搜索",
+      "path": "/v1/ak/enemy/search",
+      "description": "搜索明日方舟敌人，返回敌人名称和页面ID",
+      "keywords": [
+        "明日方舟敌人搜索"
+      ],
+      "params": {
+        "name": "搜索关键词"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "明日方舟材料详情",
+      "path": "/v1/ak/material",
+      "description": "获取明日方舟材料详细信息，包括描述、加工配方、副产物",
+      "keywords": [
+        "明日方舟材料详情"
+      ],
+      "params": {
+        "name": "材料名称"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "明日方舟材料列表",
+      "path": "/v1/ak/materials",
+      "description": "获取明日方舟全部材料列表，包含名称、稀有度、描述",
+      "keywords": [
+        "明日方舟材料列表"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "明日方舟干员详情",
+      "path": "/v1/ak/operator",
+      "description": "获取明日方舟干员详细信息，包括属性、天赋、信物等",
+      "keywords": [
+        "明日方舟干员详情"
+      ],
+      "params": {
+        "name": "干员名称"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "明日方舟干员搜索",
+      "path": "/v1/ak/operator/search",
+      "description": "搜索明日方舟干员，返回干员名称和页面ID",
+      "keywords": [
+        "明日方舟干员搜索"
+      ],
+      "params": {
+        "name": "搜索关键词"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "明日方舟干员列表",
+      "path": "/v1/ak/operators",
+      "description": "获取明日方舟干员列表，支持按职业和稀有度筛选",
+      "keywords": [
+        "明日方舟干员列表"
+      ],
+      "params": {
+        "profession": "职业筛选(先锋/近卫/重装/狙击/术师/医疗/辅助/特种)",
+        "rarity": "稀有度筛选(1-6)"
+      },
+      "required_params": []
+    },
+    {
+      "name": "明日方舟关卡详情",
+      "path": "/v1/ak/stage",
+      "description": "获取明日方舟关卡详细信息，包括敌人情报、掉落、推荐等级等",
+      "keywords": [
+        "明日方舟关卡详情"
+      ],
+      "params": {
+        "name": "关卡代号"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "老黄历",
+      "path": "/v1/almanac",
+      "description": "查询每日黄历信息，包括宜忌、吉神凶煞、冲煞、彭祖百忌、时辰宜忌等",
+      "keywords": [
+        "老黄历"
+      ],
+      "params": {
+        "date": "日期，格式 YYYY-MM-DD，默认今天"
+      },
+      "required_params": []
+    },
+    {
+      "name": "动漫搜番",
+      "path": "/v1/anime/search",
+      "description": "通过动漫截图自动识别动画名称、集数和时间点。基于 trace.moe 引擎，上传截图即可搜番，返回匹配截图和视频片段预览。",
+      "keywords": [
+        "动漫搜番"
+      ],
+      "params": {
+        "url": "动漫截图的图片URL"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "答案之书",
+      "path": "/v1/answer",
+      "description": "输入你的问题，随机获取一条答案，内置 96 条回答",
+      "keywords": [
+        "答案之书"
+      ],
+      "params": {
+        "question": "你的问题"
+      },
+      "required_params": [
+        "question"
+      ]
+    },
+    {
+      "name": "暗区子弹统计",
+      "path": "/v1/aq/bullets",
+      "description": "查询暗区突围昨日子弹价格统计数据。",
+      "keywords": [
+        "暗区"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "暗区装备方案",
+      "path": "/v1/aq/equip",
+      "description": "查询暗区突围装备搭配方案。",
+      "keywords": [
+        "暗区装备方案"
+      ],
+      "params": {
+        "limit": "返回数量，默认20"
+      },
+      "required_params": []
+    },
+    {
+      "name": "暗区改枪码",
+      "path": "/v1/aq/gunmod",
+      "description": "查询暗区突围改枪码，支持随机推荐。",
+      "keywords": [
+        "改枪码"
+      ],
+      "params": {
+        "random": "是否随机推荐",
+        "limit": "列表数量"
+      },
+      "required_params": []
+    },
+    {
+      "name": "暗区物品详情",
+      "path": "/v1/aq/item",
+      "description": "查询暗区突围单个物品的详细信息和历史价格。支持 id 或 name 查询。",
+      "keywords": [
+        "暗区物品详情"
+      ],
+      "params": {
+        "id": "物品ID",
+        "name": "物品名称（模糊搜索）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "暗区物品列表",
+      "path": "/v1/aq/items",
+      "description": "查询暗区突围物品列表，支持关键词搜索。",
+      "keywords": [
+        "暗区物品列表"
+      ],
+      "params": {
+        "keyword": "搜索关键词",
+        "page": "页码，默认1",
+        "limit": "每页数量，默认20"
+      },
+      "required_params": []
+    },
+    {
+      "name": "暗区市场快讯",
+      "path": "/v1/aq/news",
+      "description": "查询暗区突围市场动态和价格异动信息。",
+      "keywords": [
+        "暗区市场快讯"
+      ],
+      "params": {
+        "limit": "返回数量，默认10"
+      },
+      "required_params": []
+    },
+    {
+      "name": "暗区补货预测",
+      "path": "/v1/aq/predict",
+      "description": "查询暗区突围商店补货时间预测。",
+      "keywords": [
+        "暗区补货"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "暗区物品价格排行",
+      "path": "/v1/aq/rank",
+      "description": "查询暗区突围热门物品价格排行榜。",
+      "keywords": [
+        "暗区物品价格"
+      ],
+      "params": {
+        "limit": "返回数量，默认20"
+      },
+      "required_params": []
+    },
+    {
+      "name": "暗区工坊排行",
+      "path": "/v1/aq/workshop",
+      "description": "查询暗区突围工坊利润排行。",
+      "keywords": [
+        "暗区工坊排行"
+      ],
+      "params": {
+        "limit": "返回数量，默认20"
+      },
+      "required_params": []
+    },
+    {
+      "name": "明日方舟角色搜索",
+      "path": "/v1/ark/character",
+      "description": "搜索明日方舟角色代码，返回干员立绘/剧情CG/NPC立绘等",
+      "keywords": [
+        "明日方舟角色"
+      ],
+      "params": {
+        "name": "角色名（中文，如阿米娅、凯尔希）"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "明日方舟剧情搜索",
+      "path": "/v1/ark/search",
+      "description": "搜索明日方舟剧情对话，支持关键词+类型筛选+分页",
+      "keywords": [
+        "明日方舟剧情"
+      ],
+      "params": {
+        "keyword": "搜索关键词（角色名/台词）",
+        "type_filter": "剧情类型：Main(主线)/Memory(干员密录)/Activity(活动)/Rogue(肉鸽)，不传则不限",
+        "offset": "分页偏移，默认0",
+        "limit": "每页条数，1-50，默认20"
+      },
+      "required_params": [
+        "keyword"
+      ]
+    },
+    {
+      "name": "明日方舟剧情阅读",
+      "path": "/v1/ark/story",
+      "description": "读取明日方舟单章完整剧情对话，返回结构化对话列表",
+      "keywords": [
+        "明日方舟剧情阅读"
+      ],
+      "params": {
+        "id": "剧情ID（从搜索结果获取，如 obt/main/level_main_00-01_beg）"
+      },
+      "required_params": [
+        "id"
+      ]
+    },
+    {
+      "name": "语音转文字",
+      "path": "/v1/audio/asr",
+      "description": "语音转文字，支持 mp3/wav/flac/ogg/m4a(aac) 格式，最大25MB。可通过URL或直接上传音频文件。",
+      "keywords": [
+        "语音转文字"
+      ],
+      "params": {
+        "url": "音频文件URL链接"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "audio_url"
+      }
+    },
+    {
+      "name": "音频转文字【AI纠错版】",
+      "path": "/v1/audio/transcribe-correct",
+      "description": "将音频文件转写为文字，并使用AI对转写结果进行智能纠错，修正同音替代、错别字等问题，输出更通顺可读的文本。支持MP3、OGG、FLAC、M4A等常见音频格式。",
+      "keywords": [
+        "音频"
+      ],
+      "params": {
+        "url": "音频链接（支持 GET/POST）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "audio_url"
+      }
+    },
+    {
+      "name": "进制转换",
+      "path": "/v1/base/convert",
+      "description": "任意进制之间互相转换（2-36进制）",
+      "keywords": [
+        "进制"
+      ],
+      "params": {
+        "value": "输入值",
+        "from": "源进制（默认10）",
+        "to": "目标进制"
+      },
+      "required_params": [
+        "value",
+        "to"
+      ]
+    },
+    {
+      "name": "Base64 编解码",
+      "path": "/v1/base64",
+      "description": "文本与 Base64 互转，支持编码和解码两种模式",
+      "keywords": [
+        "Base64"
+      ],
+      "params": {
+        "text": "待处理文本",
+        "mode": "encode/decode（默认encode）"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "B站弹幕查询",
+      "path": "/v1/bilibili/danmaku",
+      "description": "查询B站视频弹幕列表，支持关键词筛选（多个关键词用空格分隔），返回弹幕内容、发送时间、发送者哈希、颜色等信息。",
+      "keywords": [
+        "B站弹幕"
+      ],
+      "params": {
+        "url": "B站视频链接或BV/av号",
+        "keyword": "弹幕关键词，多个用空格分隔，留空返回全部"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "B站视频解析",
+      "path": "/v1/bilibili/parse",
+      "description": "解析B站视频，获取 1080P 视频流和音频流直链（DASH M4S 格式），支持合集和分P。需用 FFmpeg 等工具合并音视频。⚠️ 仅供学习交流。",
+      "keywords": [
+        "B站视频解析"
+      ],
+      "params": {
+        "url": "B站视频URL（如 https://www.bilibili.com/video/BV1xxxx）",
+        "bvid": "BV号（与url二选一）",
+        "p": "分P编号，默认1"
+      },
+      "required_params": [],
+      "param_types": {
+        "url": "video_url",
+        "bvid": "url"
+      }
+    },
+    {
+      "name": "查询 B站视频信息",
+      "path": "/v1/bilibili/video",
+      "description": "通过BV号查询B站视频的详细信息",
+      "keywords": [
+        "查询B站视频信息"
+      ],
+      "params": {
+        "bvid": "视频BV号"
+      },
+      "required_params": [
+        "bvid"
+      ]
+    },
+    {
+      "name": "必应每日壁纸",
+      "path": "/v1/bing/wallpaper",
+      "description": "获取 Bing 每日壁纸，返回高清图片链接、标题、版权信息，支持获取最近 8 天",
+      "keywords": [
+        "必应壁纸"
+      ],
+      "params": {
+        "days": "获取天数（1-8，默认 1）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "必应壁纸历史",
+      "path": "/v1/bing/wallpaper/history",
+      "description": "获取 Bing 壁纸历史记录，最多 8 天",
+      "keywords": [
+        "壁纸历史"
+      ],
+      "params": {
+        "days": "查询天数（1-8，默认 7）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "孤独摇滚随机图片",
+      "path": "/v1/bocchi/random",
+      "description": "随机返回一张孤独摇滚高清壁纸图片。",
+      "keywords": [
+        "孤独摇滚"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "热门电影",
+      "path": "/v1/boxoffice",
+      "description": "获取豆瓣正在热映的电影列表",
+      "keywords": [
+        "热门电影"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "兔女郎学姐随机图片",
+      "path": "/v1/bunnygirl/random",
+      "description": "随机返回一张兔女郎学姐高清壁纸图片。",
+      "keywords": [
+        "兔女郎学姐"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "卡路里查询",
+      "path": "/v1/calorie",
+      "description": "查询常见食物的卡路里含量，收录60+种食物",
+      "keywords": [
+        "卡路里"
+      ],
+      "params": {
+        "food": "食物名称"
+      },
+      "required_params": []
+    },
+    {
+      "name": "顺风车租车",
+      "path": "/v1/car-hire",
+      "description": "获取顺风车租车信息列表，包含车型、取还车城市、租期天数和总价等信息。",
+      "keywords": [
+        "顺风车租车"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "电锯人随机图片",
+      "path": "/v1/chainsawman/random",
+      "description": "随机返回一张电锯人高清壁纸图片。",
+      "keywords": [
+        "电锯人"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "AI对话 Qwen3.6-Plus",
+      "path": "/v1/chat/completions",
+      "description": "OpenAI兼容格式的AI对话接口，支持多轮对话，底层采用Qwen3.6-Plus大语言模型",
+      "keywords": [
+        "Qwen3"
+      ],
+      "params": {
+        "prompt": "对话内容（直接输入文本即可）",
+        "messages": "OpenAI格式消息数组（高级用法，支持多轮对话）",
+        "max_tokens": "最大生成token数，默认2048，最大4096",
+        "temperature": "生成温度，默认0.7，范围0-1"
+      },
+      "required_params": [
+        "prompt"
+      ]
+    },
+    {
+      "name": "颜色转换",
+      "path": "/v1/color",
+      "description": "颜色格式互转：HEX ↔ RGB ↔ HSL",
+      "keywords": [
+        "颜色转换"
+      ],
+      "params": {
+        "value": "颜色值（如 #ff6600 或 rgb(255,102,0) 或 255,102,0）"
+      },
+      "required_params": [
+        "value"
+      ]
+    },
+    {
+      "name": "简繁转换",
+      "path": "/v1/convert",
+      "description": "简体中文与繁体中文互相转换，支持3878个汉字映射，纯本地实现零延迟",
+      "keywords": [
+        "简繁转换"
+      ],
+      "params": {
+        "text": "待转换文本",
+        "type": "转换方向：s2t（简体→繁体，默认）、t2s（繁体→简体）"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "倒数日",
+      "path": "/v1/countdown",
+      "description": "计算从今天到指定目标日期的倒计时，返回剩余天数、周数、小时数等信息。",
+      "keywords": [
+        "倒数日"
+      ],
+      "params": {
+        "date": "目标日期，格式 YYYY-MM-DD"
+      },
+      "required_params": [
+        "date"
+      ]
+    },
+    {
+      "name": "国家人口查询",
+      "path": "/v1/country",
+      "description": "查询世界各国人口数据，收录35个国家",
+      "keywords": [
+        "国家人口"
+      ],
+      "params": {
+        "name": "国家名称"
+      },
+      "required_params": []
+    },
+    {
+      "name": "对联生成",
+      "path": "/v1/couplet",
+      "description": "随机返回一副经典对联，包含上联、下联和横批，共214副经典对联",
+      "keywords": [
+        "对联生成"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "奶牛快传直链解析",
+      "path": "/v1/cowtransfer/parse",
+      "description": "解析奶牛快传(cowtransfer.com)分享链接，返回文件名称和直链下载地址。",
+      "keywords": [
+        "奶牛快传"
+      ],
+      "params": {
+        "url": "奶牛快传分享链接"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "诚通网盘解析",
+      "path": "/v1/ctfile/parse",
+      "description": "解析诚通网盘分享链接，获取文件名称、大小和直链下载地址。支持带密码的链接。",
+      "keywords": [
+        "诚通网盘"
+      ],
+      "params": {
+        "url": "诚通网盘分享链接（如 https://url71.ctfile.com/f/xxx）",
+        "pwd": "提取密码（如有）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "赛博朋克随机图片",
+      "path": "/v1/cyberpunk/random",
+      "description": "随机返回一张赛博朋克高清壁纸图片。",
+      "keywords": [
+        "赛博朋克"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "日期时间差计算",
+      "path": "/v1/date/diff",
+      "description": "计算两个日期之间的时间差（天数、小时、分钟等）",
+      "keywords": [
+        "日期"
+      ],
+      "params": {
+        "start": "开始日期（YYYY-MM-DD）",
+        "end": "结束日期（YYYY-MM-DD）"
+      },
+      "required_params": [
+        "start",
+        "end"
+      ]
+    },
+    {
+      "name": "AES 解密",
+      "path": "/v1/decrypt/aes",
+      "description": "AES 对称解密，将 Base64 密文还原为明文",
+      "keywords": [
+        "AES解密"
+      ],
+      "params": {
+        "key": "密钥，长度必须为 16、24 或 32 字节",
+        "text": "Base64 编码的密文",
+        "nonce": "16字节的IV/Nonce（Base64编码）"
+      },
+      "required_params": [
+        "key",
+        "text",
+        "nonce"
+      ]
+    },
+    {
+      "name": "AES 高级解密",
+      "path": "/v1/decrypt/aes/advanced",
+      "description": "支持 GCM/CBC/ECB/CTR/OFB/CFB 全模式解密，与高级加密接口完全配对。解密参数必须与加密时一致",
+      "keywords": [
+        "AES高级解密"
+      ],
+      "params": {
+        "text": "待解密的密文（Base64编码，来自加密接口返回的ciphertext字段）",
+        "key": "解密密钥（必须与加密时相同）",
+        "mode": "加密模式（必须与加密时相同）：GCM/CBC/ECB/CTR/OFB/CFB",
+        "padding": "填充方式（必须与加密时相同）：PKCS7/ZERO/NONE。GCM模式默认NONE",
+        "iv": "初始化向量（非GCM模式必须提供，Base64编码）"
+      },
+      "required_params": [
+        "text",
+        "key",
+        "mode"
+      ]
+    },
+    {
+      "name": "三角洲市场预警",
+      "path": "/v1/df/alerts",
+      "description": "查询三角洲行动市场价格预警和抄底提醒。",
+      "keywords": [
+        "三角洲市场预警"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "三角洲弹药价格",
+      "path": "/v1/df/ammo",
+      "description": "查询三角洲行动弹药价格，支持单弹药详情（含分析和预测）。",
+      "keywords": [
+        "三角洲弹药"
+      ],
+      "params": {
+        "id": "弹药ID（和 name 二选一，查详情用）",
+        "name": "弹药名称",
+        "limit": "列表数量"
+      },
+      "required_params": []
+    },
+    {
+      "name": "三角洲图鉴百科",
+      "path": "/v1/df/collection",
+      "description": "433条图鉴数据，含角色(14)/枪械(45)/穿戴(89)/药品(21)/钥匙(43)/收集品(221)，支持分类过滤和关键词搜索",
+      "keywords": [
+        "三角洲图鉴百科"
+      ],
+      "params": {
+        "category": "分类：角色/枪械/角色穿戴/药品针剂/钥匙/收集品",
+        "keyword": "关键词搜索"
+      },
+      "required_params": []
+    },
+    {
+      "name": "三角洲图鉴详情",
+      "path": "/v1/df/collection/detail",
+      "description": "查询单个图鉴详情，枪械含7项属性，角色含定位/装备/特长，钥匙含使用地点等",
+      "keywords": [
+        "三角洲图鉴"
+      ],
+      "params": {
+        "id": "条目ID（从列表获取）",
+        "name": "条目名称（模糊匹配）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "三角洲装备性价比排行",
+      "path": "/v1/df/equip-rank",
+      "description": "按装备类型查性价比TOP，支持武器/背包/胸挂/护甲/头盔/配件",
+      "keywords": [
+        "三角洲装备性价比"
+      ],
+      "params": {
+        "type": "装备类型：武器/背包/胸挂/护甲/头盔/配件，默认武器"
+      },
+      "required_params": []
+    },
+    {
+      "name": "三角洲枪械数据",
+      "path": "/v1/df/guns",
+      "description": "查询三角洲行动枪械数据，支持单枪详情（含兼容弹药）。",
+      "keywords": [
+        "三角洲枪械"
+      ],
+      "params": {
+        "id": "枪械ID（和 name 二选一）",
+        "name": "枪械名称",
+        "limit": "列表数量"
+      },
+      "required_params": []
+    },
+    {
+      "name": "三角洲物品详情",
+      "path": "/v1/df/item",
+      "description": "查询三角洲单个物品的完整信息，包含属性、兼容弹药、兼容配件等。",
+      "keywords": [
+        "三角洲物品"
+      ],
+      "params": {
+        "id": "物品ID（和 name 二选一）",
+        "name": "物品名称（支持模糊搜索，如「钢盔」「AK」）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "三角洲物品查询",
+      "path": "/v1/df/items",
+      "description": "搜索三角洲行动物品，支持按名称搜索和分类筛选，返回名称、价格、图片、尺寸。",
+      "keywords": [
+        "三角洲物品查询"
+      ],
+      "params": {
+        "keyword": "搜索关键词",
+        "category": "物品分类",
+        "page": "页码，默认1",
+        "limit": "每页数量，默认20，最大50"
+      },
+      "required_params": []
+    },
+    {
+      "name": "三角洲钥匙卡价格",
+      "path": "/v1/df/keycard",
+      "description": "查询三角洲行动钥匙卡价格，支持单卡详情（含分析和预测）。",
+      "keywords": [
+        "三角洲钥匙卡"
+      ],
+      "params": {
+        "id": "钥匙卡ID（和 name 二选一）",
+        "name": "钥匙卡名称",
+        "limit": "列表数量",
+        "map": "按地图筛选"
+      },
+      "required_params": []
+    },
+    {
+      "name": "三角洲战备推荐",
+      "path": "/v1/df/loadout",
+      "description": "6套战备方案（78万/60万/55万/24万/18万/11万），每套3种策略，含每件装备买入价/战备值/性价比",
+      "keywords": [
+        "三角洲战备推荐"
+      ],
+      "params": {
+        "type": "按方案名关键词过滤（如潮汐/航天/巴克什）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "三角洲地图密码",
+      "path": "/v1/df/password",
+      "description": "查询三角洲行动每日地图密码（大坝/长弓/百货/航天等）。",
+      "keywords": [
+        "三角洲地图密码"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "三角洲价格查询",
+      "path": "/v1/df/price",
+      "description": "查询三角洲物品的最新价格和历史价格走势。",
+      "keywords": [
+        "洲价格"
+      ],
+      "params": {
+        "id": "物品ID（和 name 二选一）",
+        "name": "物品名称",
+        "days": "历史天数，默认7"
+      },
+      "required_params": []
+    },
+    {
+      "name": "DNS 查询",
+      "path": "/v1/dns",
+      "description": "查询域名的DNS记录",
+      "keywords": [
+        "DNS"
+      ],
+      "params": {
+        "domain": "域名"
+      },
+      "required_params": [
+        "domain"
+      ]
+    },
+    {
+      "name": "ICP备案查询",
+      "path": "/v1/domain/icp",
+      "description": "查询域名ICP备案信息，返回主办单位名称、单位性质、备案号、审核时间。未备案域名返回 has_icp=false。",
+      "keywords": [
+        "ICP"
+      ],
+      "params": {
+        "web": "要查询的域名（不带 http/https 协议前缀）"
+      },
+      "required_params": [
+        "web"
+      ]
+    },
+    {
+      "name": "豆包AI生图去水印",
+      "path": "/v1/doubao/image",
+      "description": "解析豆包 AI 生图对话链接，提取无水印原图直链（PNG 2048x2048），支持批量提取。签名有效期到 2060 年，可长期使用。⚠️ 仅供学习交流。",
+      "keywords": [
+        "豆包去水印"
+      ],
+      "params": {
+        "url": "豆包生图对话链接（doubao.com/thread/xxx）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "斗罗大陆随机图片",
+      "path": "/v1/douluo/random",
+      "description": "随机返回一张斗罗大陆高清壁纸图片。",
+      "keywords": [
+        "斗罗大陆"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "汽水音乐解析",
+      "path": "/v1/dymusic",
+      "description": "解析汽水音乐分享链接，获取歌曲名称、音频播放地址、封面图片和 LRC 同步歌词。",
+      "keywords": [
+        "汽水音乐"
+      ],
+      "params": {
+        "url": "汽水音乐链接"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "audio_url"
+      }
+    },
+    {
+      "name": "文本向量化",
+      "path": "/v1/embeddings",
+      "description": "将文本转换为高维向量表示，支持单条和批量处理，标准 OpenAI 兼容接口。可用于语义搜索、文本分类、相似度计算、RAG 检索增强生成等场景。",
+      "keywords": [
+        "文本"
+      ],
+      "params": {
+        "input": "要向量化的文本，支持单条字符串或字符串数组（最多20条）"
+      },
+      "required_params": [
+        "input"
+      ]
+    },
+    {
+      "name": "AES 加密",
+      "path": "/v1/encrypt/aes",
+      "description": "AES 对称加密，将明文转为 Base64 密文。密钥长度支持 16、24、32 字节",
+      "keywords": [
+        "AES加密"
+      ],
+      "params": {
+        "key": "密钥，长度必须为 16、24 或 32 字节，对应 AES-128/192/256",
+        "text": "待加密的明文文本"
+      },
+      "required_params": [
+        "key",
+        "text"
+      ]
+    },
+    {
+      "name": "AES 高级加密",
+      "path": "/v1/encrypt/aes/advanced",
+      "description": "支持 GCM/CBC/ECB/CTR/OFB/CFB 六种加密模式，PKCS7/ZERO/NONE 三种填充方式，可选 Base64 或 HEX 输出",
+      "keywords": [
+        "高级加密"
+      ],
+      "params": {
+        "text": "待加密的明文文本",
+        "key": "加密密钥（支持任意长度）",
+        "mode": "加密模式：GCM/CBC/ECB/CTR/OFB/CFB（默认GCM）",
+        "padding": "填充方式：PKCS7/ZERO/NONE（默认PKCS7）",
+        "iv": "自定义IV（Base64编码，16字节）。GCM模式无需此参数",
+        "output_format": "输出格式：base64（默认）或hex"
+      },
+      "required_params": [
+        "text",
+        "key"
+      ]
+    },
+    {
+      "name": "Epic限时免费游戏",
+      "path": "/v1/epic/free",
+      "description": "Epic每周限时免费游戏（当前+即将）",
+      "keywords": [
+        "Epic"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "新世纪福音战士随机图片",
+      "path": "/v1/eva/random",
+      "description": "随机返回一张新世纪福音战士高清壁纸图片。",
+      "keywords": [
+        "新世纪福音战士"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "汇率转换",
+      "path": "/v1/exchange",
+      "description": "实时汇率查询与货币转换，支持全球主要货币",
+      "keywords": [
+        "汇率"
+      ],
+      "params": {
+        "from": "源货币代码",
+        "to": "目标货币代码",
+        "amount": "金额"
+      },
+      "required_params": [
+        "from",
+        "to"
+      ]
+    },
+    {
+      "name": "快递查询",
+      "path": "/v1/express",
+      "description": "实时查询快递物流信息，支持100+快递公司",
+      "keywords": [
+        "快递"
+      ],
+      "params": {
+        "no": "快递单号"
+      },
+      "required_params": [
+        "no"
+      ]
+    },
+    {
+      "name": "快递公司列表",
+      "path": "/v1/express/carriers",
+      "description": "获取支持的快递公司列表",
+      "keywords": [
+        "快递公司"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "快递公司识别",
+      "path": "/v1/express/detect",
+      "description": "根据快递单号自动识别快递公司",
+      "keywords": [
+        "快递公司识别"
+      ],
+      "params": {
+        "number": "快递单号"
+      },
+      "required_params": [
+        "number"
+      ]
+    },
+    {
+      "name": "网站Favicon获取",
+      "path": "/v1/favicon",
+      "description": "输入网站URL，自动获取该网站的Favicon图标地址，支持解析HTML中的link标签和兜底favicon.ico",
+      "keywords": [
+        "Favicon"
+      ],
+      "params": {
+        "url": "目标网站URL（支持带协议或不带协议）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "最终幻想随机图片",
+      "path": "/v1/ff/random",
+      "description": "随机返回一张最终幻想高清壁纸图片。",
+      "keywords": [
+        "最终幻想"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "FGO随机图片",
+      "path": "/v1/fgo/random",
+      "description": "随机返回一张FGO（命运冠位指定）高清壁纸图片。",
+      "keywords": [
+        "FGO"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "彩虹屁",
+      "path": "/v1/flatter",
+      "description": "随机生成一句彩虹屁/夸人语句",
+      "keywords": [
+        "彩虹屁"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "AI菜品识别",
+      "path": "/v1/food/detect",
+      "description": "AI菜品识别 — 上传图片即可识别菜品，返回菜名、菜系、食材、热量、口味等详细信息",
+      "keywords": [
+        "菜品"
+      ],
+      "params": {
+        "url": "图片URL地址",
+        "lang": "回答语言，zh=中文（默认），en=英文"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "足球赛程",
+      "path": "/v1/football",
+      "description": "查询足球赛程和比分，覆盖英超/西甲/意甲/德甲/法甲/中超/欧冠等主流联赛",
+      "keywords": [
+        "足球赛程"
+      ],
+      "params": {
+        "league": "联赛筛选（如 英超/西甲/中超/欧冠），不传返回所有"
+      },
+      "required_params": []
+    },
+    {
+      "name": "狐妖小红娘随机图片",
+      "path": "/v1/foxspirit/random",
+      "description": "随机返回一张狐妖小红娘高清壁纸图片。",
+      "keywords": [
+        "狐妖小红娘"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "葬送的芙莉莲随机图片",
+      "path": "/v1/frieren/random",
+      "description": "随机返回一张葬送的芙莉莲高清壁纸图片。",
+      "keywords": [
+        "葬送的芙莉莲"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "三角洲行动每日密码",
+      "path": "/v1/game/delta-force/password",
+      "description": "获取三角洲行动游戏各地图的每日密码（零号大坝/长弓溪谷/巴什/航天基地/潮汐监狱），含密码门位置描述和示意图。每日自动更新。",
+      "keywords": [
+        "三角洲行动每日密码"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "少女前线随机图片",
+      "path": "/v1/gfl/random",
+      "description": "随机返回一张少女前线高清壁纸图片。",
+      "keywords": [
+        "少女前线"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "GitHub仓库查询",
+      "path": "/v1/github/repo",
+      "description": "查询GitHub仓库详细信息（Star、Fork、描述等）",
+      "keywords": [
+        "GitHub仓库查询"
+      ],
+      "params": {
+        "owner": "仓库所有者",
+        "repo": "仓库名称"
+      },
+      "required_params": [
+        "owner",
+        "repo"
+      ]
+    },
+    {
+      "name": "GitHub 总榜",
+      "path": "/v1/github/top",
+      "description": "GitHub 全站热门仓库总榜单，按 Star 数降序排列，可指定查看数量",
+      "keywords": [
+        "总榜"
+      ],
+      "params": {
+        "count": "返回数量（默认10，最大100）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "GitHub 每日热门",
+      "path": "/v1/github/trending",
+      "description": "获取 GitHub 今日新创建的热门仓库 Top 10，按 Star 数排序",
+      "keywords": [
+        "每日热门"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "GitHub用户查询",
+      "path": "/v1/github/user",
+      "description": "查询GitHub用户信息（粉丝、仓库数、简介等）",
+      "keywords": [
+        "GitHub用户"
+      ],
+      "params": {
+        "username": "GitHub用户名"
+      },
+      "required_params": [
+        "username"
+      ]
+    },
+    {
+      "name": "黄金价格",
+      "path": "/v1/gold",
+      "description": "查询国内黄金价格，含品牌金价、银行投资金条、贵金属回收价格",
+      "keywords": [
+        "黄金价格"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "金价查询2",
+      "path": "/v1/gold2",
+      "description": "实时金价行情：包含贵金属现货价格、品牌金店零售价（周大福/老凤祥等）、银行金条报价（工行/建行等）、各纯度回收价。",
+      "keywords": [
+        "金价查询"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "获取Gravatar头像",
+      "path": "/v1/gravatar",
+      "description": "通过邮箱地址获取 Gravatar 全球通用头像链接和用户资料，支持自定义尺寸和默认头像样式。",
+      "keywords": [
+        "Gravatar"
+      ],
+      "params": {
+        "email": "邮箱地址",
+        "size": "头像尺寸（1-2048像素，默认200）",
+        "default": "未注册时的默认头像样式：404（返回404）/ mp（简约）/ identicon（几何图案）/ monsterid（怪物）/ wavatar（卡通）/ retro（像素风）/ robohash（机器人）/ blank（空白）"
+      },
+      "required_params": [
+        "email"
+      ],
+      "param_types": {
+        "email": "url"
+      }
+    },
+    {
+      "name": "指定日期历史",
+      "path": "/v1/history/date",
+      "description": "查询指定日期历史上发生的重大事件",
+      "keywords": [
+        "指定日期历史"
+      ],
+      "params": {
+        "month": "月份(1-12)，默认当月",
+        "day": "日期(1-31)，默认当日"
+      },
+      "required_params": []
+    },
+    {
+      "name": "历史上的今天",
+      "path": "/v1/history/today",
+      "description": "查询历史上今天发生的重大事件，包括古代/近代/现代",
+      "keywords": [
+        "历史上的今天"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "节假日查询",
+      "path": "/v1/holiday",
+      "description": "查询指定日期的节假日信息，或查询全年节假日安排",
+      "keywords": [
+        "节假日"
+      ],
+      "params": {
+        "date": "查询日期（YYYY-MM-DD，不传则查今天）",
+        "year": "查询某年所有节假日"
+      },
+      "required_params": []
+    },
+    {
+      "name": "聚合热榜",
+      "path": "/v1/hot",
+      "description": "聚合60+平台的实时热榜排行",
+      "keywords": [
+        "聚合热榜"
+      ],
+      "params": {
+        "platform": "平台名称（英文或中文），如 weibo/微博"
+      },
+      "required_params": []
+    },
+    {
+      "name": "全站热榜",
+      "path": "/v1/hot/all",
+      "description": "聚合45+平台的全站热门内容排行",
+      "keywords": [
+        "全站热榜"
+      ],
+      "params": {
+        "page": "页码，默认1，最大10"
+      },
+      "required_params": []
+    },
+    {
+      "name": "崩铁角色列表",
+      "path": "/v1/hsr/characters",
+      "description": "92个角色+7种元素属性，含稀有度/命途/元素/图标，支持按元素和命途过滤",
+      "keywords": [
+        "崩铁角色列表"
+      ],
+      "params": {
+        "element": "元素过滤：物理/火/冰/雷/风/量子/虚数",
+        "path": "命途过滤：毁灭/存护/巡猎/智识/虚无/同谐/欢愉/记忆"
+      },
+      "required_params": []
+    },
+    {
+      "name": "崩铁玩家查询",
+      "path": "/v1/hsr/profile",
+      "description": "输入UID查玩家详情：角色评分/遗器(6件×词条评分)/光锥/技能/属性，仅支持官服",
+      "keywords": [
+        "崩铁玩家查询"
+      ],
+      "params": {
+        "uid": "游戏UID（官服9位数字）"
+      },
+      "required_params": [
+        "uid"
+      ]
+    },
+    {
+      "name": "崩铁角色排行",
+      "path": "/v1/hsr/rank",
+      "description": "指定角色Top100排行榜，含评分等级(SSS/SS/S/A/B/C)，支持角色名查询",
+      "keywords": [
+        "崩铁角色排行"
+      ],
+      "params": {
+        "character_id": "角色ID",
+        "name": "角色名称（模糊匹配）",
+        "uid": "玩家UID（返回该玩家排名）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "崩坏星穹铁道兑换码",
+      "path": "/v1/hsr/redeem",
+      "description": "查询崩坏星穹铁道兑换码，支持国服/国际服，默认只返回有效的",
+      "keywords": [
+        "崩坏星穹铁道兑换码"
+      ],
+      "params": {
+        "server": "服务器：1/国服(默认)，2/国际服",
+        "type": "类型过滤：1/常用码，2/直播码",
+        "all": "true=返回含过期，默认只返回有效码"
+      },
+      "required_params": []
+    },
+    {
+      "name": "HTML转义",
+      "path": "/v1/html/escape",
+      "description": "HTML特殊字符转义与反转义",
+      "keywords": [
+        "HTML"
+      ],
+      "params": {
+        "text": "输入文本",
+        "mode": "escape/unescape"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "冰菓随机图片",
+      "path": "/v1/hyouka/random",
+      "description": "随机返回一张冰菓高清壁纸图片。",
+      "keywords": [
+        "冰菓"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "身份证归属地",
+      "path": "/v1/idcard",
+      "description": "根据18位身份证号码查询归属省份、生日、性别，并校验校验码",
+      "keywords": [
+        "身份"
+      ],
+      "params": {
+        "id": "18位身份证号码"
+      },
+      "required_params": [
+        "id"
+      ]
+    },
+    {
+      "name": "偶像大师随机图片",
+      "path": "/v1/idolmaster/random",
+      "description": "随机返回一张偶像大师高清壁纸图片。",
+      "keywords": [
+        "偶像大师"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "图片转Base64",
+      "path": "/v1/image/base64",
+      "description": "将远程图片转换为 Base64 编码字符串，返回 base64、data URI、图片大小等信息，支持最大 5MB",
+      "keywords": [
+        "图片转Base64"
+      ],
+      "params": {
+        "url": "图片 URL 地址"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "图床删除",
+      "path": "/v1/image/delete",
+      "description": "通过上传时返回的删除凭证（delete_token）删除已上传到图床的图片。删除后图片 URL 立即失效，同时清除 Telegram 存储和本地缓存。",
+      "keywords": [
+        "图床删除"
+      ],
+      "params": {
+        "token": "上传时返回的删除凭证"
+      },
+      "required_params": [
+        "token"
+      ]
+    },
+    {
+      "name": "AI图片鉴定",
+      "path": "/v1/image/detect",
+      "description": "AI图片鉴定 — 一键检测图片是否由AI生成，返回专业鉴定报告，含置信度、AI概率、详细指标和评分",
+      "keywords": [
+        "AI图片鉴定"
+      ],
+      "params": {
+        "url": "图片URL地址",
+        "lang": "回答语言，zh=中文（默认），en=英文"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "图片提示词反推",
+      "path": "/v1/image/prompt",
+      "description": "上传一张图片，AI自动反推出可用于生成类似图片的提示词（Prompt）。适用于 AI 绘画参考、图片风格分析等场景。",
+      "keywords": [
+        "AI图片提示词反推"
+      ],
+      "params": {
+        "image": "图片URL地址",
+        "lang": "提示词语言：zh 为中文（默认），en 为英文"
+      },
+      "required_params": [
+        "image"
+      ],
+      "param_types": {
+        "image": "image_url"
+      }
+    },
+    {
+      "name": "AI识图",
+      "path": "/v1/image/recognize",
+      "description": "上传一张图片，AI将为你详细描述图片中的场景、人物、动作、物体、颜色、文字等内容。支持中文和英文两种语言。",
+      "keywords": [
+        "AI识图"
+      ],
+      "params": {
+        "url": "图片的URL地址，支持 JPG/PNG/WebP 等常见格式，最大 5MB",
+        "lang": "AI回答使用的语言：zh 为中文（默认），en 为英文"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "识图识别查询",
+      "path": "/v1/image/recognize2",
+      "description": "智能识图：上传图片自动识别物体/场景/二维码，并返回百科介绍和以图搜商品结果。基于小米AI视觉识别引擎。",
+      "keywords": [
+        "识图识别"
+      ],
+      "params": {
+        "url": "图片链接"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "图床上传",
+      "path": "/v1/image/upload",
+      "description": "上传图片到图床，返回代理直链 URL 和删除凭证。支持 POST 上传二进制文件或 GET 传 url 参数提供图片链接。支持 PNG/JPG/GIF/WebP，最大 5MB。",
+      "keywords": [
+        "图床上传"
+      ],
+      "params": {
+        "url": "图片URL链接"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "IP 归属地查询",
+      "path": "/v1/ip",
+      "description": "查询IP地址的地理位置、运营商等信息",
+      "keywords": [
+        "IP"
+      ],
+      "params": {
+        "ip": "IP地址"
+      },
+      "required_params": [
+        "ip"
+      ],
+      "param_types": {
+        "ip": "url"
+      }
+    },
+    {
+      "name": "IP详细信息",
+      "path": "/v1/ip/info",
+      "description": "查询IP详细信息，包含地理位置（洲/国家/省/市/区/街道）、运营商、经纬度、时区、邮编、代理检测和风险评估。",
+      "keywords": [
+        "IP详细信息"
+      ],
+      "params": {
+        "ip": "IP地址"
+      },
+      "required_params": [
+        "ip"
+      ],
+      "param_types": {
+        "ip": "url"
+      }
+    },
+    {
+      "name": "JSON 格式化",
+      "path": "/v1/json/format",
+      "description": "JSON 美化、压缩和校验",
+      "keywords": [
+        "JSON格式化"
+      ],
+      "params": {
+        "json": "JSON字符串",
+        "mode": "format/minify/validate（默认format）"
+      },
+      "required_params": [
+        "json"
+      ]
+    },
+    {
+      "name": "JWT解析",
+      "path": "/v1/jwt/decode",
+      "description": "解析JWT Token的header和payload（不解密签名）",
+      "keywords": [
+        "JWT"
+      ],
+      "params": {
+        "token": "JWT Token"
+      },
+      "required_params": [
+        "token"
+      ]
+    },
+    {
+      "name": "疯狂星期四",
+      "path": "/v1/kfc",
+      "description": "随机生成一条肯德基疯狂星期四文案",
+      "keywords": [
+        "KFC"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "快递查询2",
+      "path": "/v1/kuaidi/track",
+      "description": "查询快递物流状态和跟踪详情，自动识别快递公司，支持圆通、中通、顺丰、韵达、申通、极兔等主流快递。",
+      "keywords": [
+        "快递查询2"
+      ],
+      "params": {
+        "tracking_no": "快递运单号"
+      },
+      "required_params": [
+        "tracking_no"
+      ]
+    },
+    {
+      "name": "蓝奏云链接解析",
+      "path": "/v1/lanzou/parse",
+      "description": "解析蓝奏云分享链接，返回文件名称、文件大小和直链下载地址。支持带密码的链接（传入 pwd 参数）。",
+      "keywords": [
+        "蓝奏"
+      ],
+      "params": {
+        "url": "蓝奏云分享链接",
+        "pwd": "提取密码（如有）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "人生计算器",
+      "path": "/v1/life",
+      "description": "输入生日计算人生已度过的详细信息（天数、心跳、呼吸等）",
+      "keywords": [
+        "人生计算器"
+      ],
+      "params": {
+        "birthday": "生日(YYYY-MM-DD)"
+      },
+      "required_params": [
+        "birthday"
+      ]
+    },
+    {
+      "name": "英雄联盟随机图片",
+      "path": "/v1/lol/random",
+      "description": "随机返回一张英雄联盟高清壁纸图片。",
+      "keywords": [
+        "英雄联盟"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "手机凶吉",
+      "path": "/v1/luck/phone",
+      "description": "根据手机号尾数判断凶吉运势",
+      "keywords": [
+        "手机凶吉"
+      ],
+      "params": {
+        "phone": "手机号码"
+      },
+      "required_params": [
+        "phone"
+      ]
+    },
+    {
+      "name": "手机号码吉凶查询",
+      "path": "/v1/luck/phone-mfbyg",
+      "description": "手机号码吉凶查询分析，含五行分布、性格倾向、运势、签诗和风水建议。",
+      "keywords": [
+        "手机号码吉凶查询"
+      ],
+      "params": {
+        "phone": "手机号码"
+      },
+      "required_params": [
+        "phone"
+      ]
+    },
+    {
+      "name": "车牌凶吉",
+      "path": "/v1/luck/plate",
+      "description": "根据车牌号判断凶吉运势",
+      "keywords": [
+        "车牌凶吉"
+      ],
+      "params": {
+        "plate": "车牌号"
+      },
+      "required_params": [
+        "plate"
+      ]
+    },
+    {
+      "name": "QQ凶吉",
+      "path": "/v1/luck/qq",
+      "description": "根据QQ号判断凶吉运势",
+      "keywords": [
+        "QQ"
+      ],
+      "params": {
+        "qq": "QQ号"
+      },
+      "required_params": [
+        "qq"
+      ]
+    },
+    {
+      "name": "农历查询",
+      "path": "/v1/lunar",
+      "description": "查询指定日期的农历信息（农历日期、天干地支、生肖、传统节日）",
+      "keywords": [
+        "农历"
+      ],
+      "params": {
+        "date": "公历日期（YYYY-MM-DD，不传则查今天）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "魔女之旅随机图片",
+      "path": "/v1/majonovi/random",
+      "description": "随机返回一张魔女之旅高清壁纸图片。",
+      "keywords": [
+        "魔女之旅"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "MC 玩家查询",
+      "path": "/v1/mc/player",
+      "description": "查询 Minecraft 玩家信息，包括 UUID、头像、皮肤",
+      "keywords": [
+        "MC玩家查询"
+      ],
+      "params": {
+        "name": "MC 玩家名"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "鸣潮兑换码",
+      "path": "/v1/mc/redeem",
+      "description": "查询鸣潮游戏兑换码，默认只返回有效的，传all=true返回全部",
+      "keywords": [
+        "鸣潮兑换码"
+      ],
+      "params": {
+        "all": "true=返回含过期，默认只返回有效码"
+      },
+      "required_params": []
+    },
+    {
+      "name": "MC 服务器查询",
+      "path": "/v1/mc/server",
+      "description": "查询 Minecraft 服务器状态，包括在线人数、版本、MOTD 等",
+      "keywords": [
+        "MC服务器查询"
+      ],
+      "params": {
+        "server": "服务器地址（如 mc.hypixel.net）"
+      },
+      "required_params": [
+        "server"
+      ],
+      "param_types": {
+        "server": "url"
+      }
+    },
+    {
+      "name": "MD5 加密",
+      "path": "/v1/md5",
+      "description": "对文本进行MD5哈希加密",
+      "keywords": [
+        "MD5"
+      ],
+      "params": {
+        "text": "待加密文本"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "MD5校验",
+      "path": "/v1/md5/verify",
+      "description": "校验文本的MD5哈希值是否匹配",
+      "keywords": [
+        "校验"
+      ],
+      "params": {
+        "text": "原始文本",
+        "hash": "MD5哈希值"
+      },
+      "required_params": [
+        "text",
+        "hash"
+      ]
+    },
+    {
+      "name": "米游社帖子详情",
+      "path": "/v1/mhy/post",
+      "description": "查询米游社帖子的完整内容、作者信息和互动数据。",
+      "keywords": [
+        "米游社帖子详情"
+      ],
+      "params": {
+        "post_id": "帖子ID",
+        "game": "游戏名（默认原神）"
+      },
+      "required_params": [
+        "post_id"
+      ]
+    },
+    {
+      "name": "米游社帖子列表",
+      "path": "/v1/mhy/posts",
+      "description": "查询米游社各游戏板块的帖子列表，支持按游戏和板块筛选。",
+      "keywords": [
+        "米游社帖子列表"
+      ],
+      "params": {
+        "game": "游戏名：原神/崩坏3/星穹铁道/绝区零/未定事件簿/崩坏学园2 等（默认原神）",
+        "forum_id": "板块ID（默认28=原神综合）",
+        "page": "页码，默认1",
+        "size": "每页条数，默认20"
+      },
+      "required_params": []
+    },
+    {
+      "name": "初音未来随机图片",
+      "path": "/v1/miku/random",
+      "description": "随机返回一张初音未来高清壁纸图片。",
+      "keywords": [
+        "初音未来"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "金额大写",
+      "path": "/v1/money/upper",
+      "description": "将数字金额转换为中文大写（壹贰叁...）",
+      "keywords": [
+        "金额大写"
+      ],
+      "params": {
+        "amount": "金额数值"
+      },
+      "required_params": [
+        "amount"
+      ]
+    },
+    {
+      "name": "更衣人偶坠入爱河随机图片",
+      "path": "/v1/mydressup/random",
+      "description": "随机返回一张更衣人偶坠入爱河高清壁纸图片。",
+      "keywords": [
+        "更衣人偶坠入爱河"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "获取外网IP",
+      "path": "/v1/myip",
+      "description": "获取调用者自己的外网IP地址及归属地信息，无需传参",
+      "keywords": [
+        "获取外网IP"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "永劫最近对局",
+      "path": "/v1/naraka/matches",
+      "description": "查询永劫无间玩家最近对局记录，包含每局的伤害、排名、击杀、使用英雄等数据。",
+      "keywords": [
+        "永劫对局"
+      ],
+      "params": {
+        "id": "角色ID（和 name 二选一）",
+        "name": "玩家昵称",
+        "page": "页码，默认1",
+        "limit": "每页条数，默认20"
+      },
+      "required_params": []
+    },
+    {
+      "name": "永劫玩家详情",
+      "path": "/v1/naraka/player",
+      "description": "查询永劫无间玩家赛季战绩，包含16项总览指标和英雄使用数据。支持 id 或 name 查询，默认天选三排模式。",
+      "keywords": [
+        "永劫玩家"
+      ],
+      "params": {
+        "id": "角色ID roleIdSimple（和 name 二选一）",
+        "name": "玩家昵称（自动搜索获取ID）",
+        "mode": "模式ID（默认5000001=天选三排，可从赛季模式接口获取）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "永劫搜索玩家",
+      "path": "/v1/naraka/search",
+      "description": "搜索永劫无间玩家，按昵称或游戏ID查询，返回角色ID和段位。推荐使用游戏ID搜索，命中率更高。",
+      "keywords": [
+        "永劫搜索玩家"
+      ],
+      "params": {
+        "name": "玩家昵称（需URL编码）或游戏ID（数字）"
+      },
+      "required_params": [
+        "name"
+      ],
+      "param_types": {
+        "name": "url"
+      }
+    },
+    {
+      "name": "永劫赛季列表",
+      "path": "/v1/naraka/seasons",
+      "description": "查询永劫无间所有赛季编号和名称。",
+      "keywords": [
+        "永劫赛季"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "NBA赛事",
+      "path": "/v1/nba",
+      "description": "查询 NBA 赛事信息，数据源为虎扑NBA。支持战绩排行和赛程查询，返回中文队名、比分、状态。",
+      "keywords": [
+        "NBA"
+      ],
+      "params": {
+        "type": "查询类型：standings（战绩排行，默认）/ schedule（赛程）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "网易云歌单解析",
+      "path": "/v1/netease/playlist",
+      "description": "输入网易云音乐歌单 ID，返回歌单中所有歌曲的名称、歌手、专辑、封面、时长和是否免费。",
+      "keywords": [
+        "网易云歌单解析"
+      ],
+      "params": {
+        "id": "歌单ID"
+      },
+      "required_params": [
+        "id"
+      ]
+    },
+    {
+      "name": "网易云音乐搜索",
+      "path": "/v1/netease/search",
+      "description": "搜索网易云音乐歌曲，返回匹配的歌曲列表，包含歌曲名、歌手、专辑、封面、时长和 VIP 状态。支持分页。",
+      "keywords": [
+        "网易云音乐搜索"
+      ],
+      "params": {
+        "keyword": "搜索关键词",
+        "limit": "返回数量，默认20，最大100",
+        "offset": "偏移量，默认0"
+      },
+      "required_params": [
+        "keyword"
+      ]
+    },
+    {
+      "name": "网易云音乐解析",
+      "path": "/v1/netease/song",
+      "description": "输入网易云音乐歌曲 ID 或分享链接，返回歌曲信息、封面、播放链接和 LRC 同步歌词。支持音质选择。",
+      "keywords": [
+        "网易云音乐解析"
+      ],
+      "params": {
+        "id": "歌曲ID或分享链接",
+        "level": "音质: standard/exhigh/lossless/hires"
+      },
+      "required_params": [
+        "id"
+      ],
+      "param_types": {
+        "id": "url"
+      }
+    },
+    {
+      "name": "网易云音乐排行榜",
+      "path": "/v1/netease/toplist",
+      "description": "获取网易云音乐排行榜。不传 id 返回所有榜单列表（62 个），传入榜单 id 返回该榜单前 100 首歌曲详情。",
+      "keywords": [
+        "网易云音乐排行榜"
+      ],
+      "params": {
+        "id": "榜单ID（不传返回榜单列表，传入返回该榜单歌曲）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "每日新闻热榜",
+      "path": "/v1/news/60s",
+      "description": "获取今日头条热门新闻排行榜",
+      "keywords": [
+        "每日新闻"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "60S读世界",
+      "path": "/v1/news/60s/v2",
+      "description": "60S读世界（文字版）— 每天60秒读懂世界，返回今日15条全球热点新闻",
+      "keywords": [
+        "60S"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "尼尔随机图片",
+      "path": "/v1/nier/random",
+      "description": "随机返回一张尼尔高清壁纸图片。",
+      "keywords": [
+        "尼尔"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "异环角色列表",
+      "path": "/v1/nte/characters",
+      "description": "查询异环角色列表，支持按属性、稀有度、定位筛选。返回中英双语。",
+      "keywords": [
+        "异环角色"
+      ],
+      "params": {
+        "element": "属性筛选：生灵/精神/混沌/宇宙/相/光/咒（也支持英文 anima/psyche/chaos/cosmos/lakshana/light/curse）",
+        "rarity": "稀有度：S/A（也支持 s/a/S级/A级）",
+        "role": "定位：输出/辅助/防御/增益/功能/伤害（也支持英文 attack/support/defense/buff/utility/dps）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "异环兑换码",
+      "path": "/v1/nte/redeem",
+      "description": "查询异环游戏兑换码，默认只返回有效码，传all=true返回全部（含过期）",
+      "keywords": [
+        "异环兑换码"
+      ],
+      "params": {
+        "all": "true=返回全部（含过期），默认只返回有效码"
+      },
+      "required_params": []
+    },
+    {
+      "name": "异环搜索",
+      "path": "/v1/nte/search",
+      "description": "搜索异环（NTE）全站数据，支持中英文关键词，涵盖角色、武器、材料、攻略、FAQ 等。",
+      "keywords": [
+        "异环搜索"
+      ],
+      "params": {
+        "keyword": "搜索关键词（中英文均可）",
+        "type": "类型筛选：character/weapon/material/guide/faq",
+        "limit": "返回数量，默认20"
+      },
+      "required_params": [
+        "keyword"
+      ]
+    },
+    {
+      "name": "异环武器列表",
+      "path": "/v1/nte/weapons",
+      "description": "查询异环武器列表，支持按类型筛选。",
+      "keywords": [
+        "异环武器"
+      ],
+      "params": {
+        "weapon_type": "类型筛选：固体/气体/等离子/合成（也支持英文 solid/gas/plasma/synthesis）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "腾讯OCR文字识别",
+      "path": "/v1/ocr",
+      "description": "识别图片中的文字内容，支持中英文混合、表格、手写体等多种场景，保持原始排版格式输出。",
+      "keywords": [
+        "OCR"
+      ],
+      "params": {
+        "url": "图片的URL地址，支持 JPG/PNG/WebP/GIF 等常见格式",
+        "prompt": "自定义提示词，默认识别所有文字并保持原始排版"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "百度OCR文字识别",
+      "path": "/v1/ocr/baidu",
+      "description": "基于百度 PaddleOCR 模型的图片文字识别，支持中英文混合、表格、手写体等多种场景。响应较慢（60-120秒），请耐心等待。",
+      "keywords": [
+        "百度OCR"
+      ],
+      "params": {
+        "url": "图片的URL地址，支持 JPG/PNG/WebP 等常见格式",
+        "prompt": "自定义提示词，默认识别所有文字并保持原始排版"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "百度OCR文字识别V2",
+      "path": "/v1/ocr/baidu2",
+      "description": "基于讯飞MaaS PaddleOCR-VL-1.6模型识别图片中的文字内容，支持中英文混合、表格、手写体等多种场景，保持原始排版格式输出。V2版本，响应更快。",
+      "keywords": [
+        "百度文字识别2"
+      ],
+      "params": {
+        "url": "图片URL"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "国内油价查询",
+      "path": "/v1/oil",
+      "description": "查询全国或指定省份的汽柴油最新价格，包含92号/95号/98号汽油及0号/-10号/-20号柴油等",
+      "keywords": [
+        "国内油价"
+      ],
+      "params": {
+        "province": "省份名称（支持31省，如北京/广东/上海）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "守望先锋随机图片",
+      "path": "/v1/overwatch/random",
+      "description": "随机返回一张守望先锋高清壁纸图片。",
+      "keywords": [
+        "守望先锋"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "随机密码生成",
+      "path": "/v1/password",
+      "description": "生成指定长度和强度的随机密码",
+      "keywords": [
+        "随机密码"
+      ],
+      "params": {
+        "length": "密码长度(4-64)",
+        "type": "类型(all/alpha/numeric)"
+      },
+      "required_params": []
+    },
+    {
+      "name": "战双帕弥什随机图片",
+      "path": "/v1/pgr/random",
+      "description": "随机返回一张战双帕弥什高清壁纸图片。",
+      "keywords": [
+        "战双帕弥什"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "手机号归属地",
+      "path": "/v1/phone",
+      "description": "查询手机号码的归属地、运营商信息",
+      "keywords": [
+        "手机号归属地"
+      ],
+      "params": {
+        "tel": "手机号码"
+      },
+      "required_params": [
+        "tel"
+      ]
+    },
+    {
+      "name": "骚扰电话查询",
+      "path": "/v1/phone/harass",
+      "description": "查询手机号码的安全状态，获取360手机卫士、搜狗号码通、百度手机卫士三大平台的标记结果，识别骚扰电话、诈骗号码等。",
+      "keywords": [
+        "骚扰电话"
+      ],
+      "params": {
+        "phone": "11位手机号码"
+      },
+      "required_params": [
+        "phone"
+      ]
+    },
+    {
+      "name": "汉字转拼音",
+      "path": "/v1/pinyin",
+      "description": "将中文汉字转换为拼音，支持声调",
+      "keywords": [
+        "汉字转拼音"
+      ],
+      "params": {
+        "text": "中文文本"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "STEAM 游戏下载",
+      "path": "/v1/playzip",
+      "description": "搜索和下载游戏，支持关键词搜索、分类浏览及下载直链获取",
+      "keywords": [
+        "STEAM"
+      ],
+      "params": {
+        "keyword": "搜索关键词",
+        "category": "分类：action/rpg/adventure/shooting/strategy/fighting/casual/horror/sports_racing/rts/simulation/card/indie/lan",
+        "id": "游戏ID，传入则返回详情+下载链接",
+        "page": "页码，默认1，每页30条",
+        "sort": "排序：views（热度，默认）/ latest（最新）"
+      },
+      "required_params": [],
+      "param_types": {
+        "id": "url"
+      }
+    },
+    {
+      "name": "毒鸡汤",
+      "path": "/v1/poison",
+      "description": "随机生成一条毒鸡汤/扎心语录",
+      "keywords": [
+        "毒鸡汤"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "精灵宝可梦随机图片",
+      "path": "/v1/pokemon/random",
+      "description": "随机返回一张精灵宝可梦高清壁纸图片。",
+      "keywords": [
+        "精灵宝可梦"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "公主连结随机图片",
+      "path": "/v1/priconne/random",
+      "description": "随机返回一张公主连结高清壁纸图片。",
+      "keywords": [
+        "公主连结"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "PUBG封号查询",
+      "path": "/v1/pubg/ban",
+      "description": "查询PUBG玩家封号状态、生存等级、总场次。支持中文和英文玩家名。",
+      "keywords": [
+        "PUBG封号"
+      ],
+      "params": {
+        "name": "玩家名（大小写敏感）"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "PUBG排行榜",
+      "path": "/v1/pubg/rank",
+      "description": "查询PUBG排行榜，按区服和模式返回前50名玩家的积分、段位、胜场、击杀等数据。支持中文参数。",
+      "keywords": [
+        "PUBG排行榜"
+      ],
+      "params": {
+        "platform": "区服：亚服/北美/欧洲/韩日/东南亚/大洋洲/南美（默认亚服，也支持英文pc-as等）",
+        "mode": "模式：四排FPP/四排/双排FPP/双排/单排FPP/单排（默认四排FPP，也支持英文squad-fpp等）",
+        "season": "赛季号，默认41"
+      },
+      "required_params": []
+    },
+    {
+      "name": "PUBG赛季数据",
+      "path": "/v1/pubg/stats",
+      "description": "查询PUBG玩家排位赛季数据，包含各模式的段位、积分、胜率、KDA等。",
+      "keywords": [
+        "PUBG赛季"
+      ],
+      "params": {
+        "name": "玩家名",
+        "season": "赛季号，默认41（最新）"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "千问AI生图去水印",
+      "path": "/v1/qianwen/image",
+      "description": "从千问分享链接中提取 AI 生成的无水印图片。支持 qianwen.com 和 tongyi.aliyun.com 的分享链接。",
+      "keywords": [
+        "千问去水印"
+      ],
+      "params": {
+        "url": "千问分享链接"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "QQ拦截查询",
+      "path": "/v1/qq/check",
+      "description": "检测域名是否被QQ安全中心拦截，返回拦截状态、标题和详细说明。",
+      "keywords": [
+        "QQ拦截"
+      ],
+      "params": {
+        "url": "域名"
+      },
+      "required_params": [
+        "url"
+      ]
+    },
+    {
+      "name": "QQ号码详细估价",
+      "path": "/v1/qq/detail",
+      "description": "QQ号码详细估价，三合一接口：昵称检测 + 号码估值 + 账号信息（会员/等级/注册时间）。",
+      "keywords": [
+        "QQ估价"
+      ],
+      "params": {
+        "qq": "QQ号码"
+      },
+      "required_params": [
+        "qq"
+      ]
+    },
+    {
+      "name": "QQ号码极速估价",
+      "path": "/v1/qq/estimate",
+      "description": "QQ号码极速估价，返回估值金额、价值等级和详细估价理由。",
+      "keywords": [
+        "QQ极速估价"
+      ],
+      "params": {
+        "qq": "QQ号码"
+      },
+      "required_params": [
+        "qq"
+      ]
+    },
+    {
+      "name": "QQ群信息查询",
+      "path": "/v1/qq/group",
+      "description": "查询QQ群基本信息，包括群名、当前/最大成员数、群主QQ号、群简介、加群验证方式和验证问题。",
+      "keywords": [
+        "QQ群信息"
+      ],
+      "params": {
+        "qq": "QQ群号"
+      },
+      "required_params": [
+        "qq"
+      ]
+    },
+    {
+      "name": "QQ信息查询",
+      "path": "/v1/qq/info",
+      "description": "查询QQ用户基本信息，包括昵称、性别、星座、所在地、头像、QQ空间状态、QQ会员等级和绿钻等级。",
+      "keywords": [
+        "QQ信息"
+      ],
+      "params": {
+        "qq": "QQ号码"
+      },
+      "required_params": [
+        "qq"
+      ]
+    },
+    {
+      "name": "QQ链接生成",
+      "path": "/v1/qq/link",
+      "description": "生成QQ强制聊天链接（私聊）、加群链接或个人主页链接。传入QQ号或群号即可生成对应链接。",
+      "keywords": [
+        "QQ链接生成"
+      ],
+      "params": {
+        "qun": "QQ群号（加群链接）",
+        "qq": "QQ号（私聊链接）",
+        "jsh": "QQ号（主页链接）"
+      },
+      "required_params": [],
+      "param_types": {
+        "qun": "url",
+        "qq": "url",
+        "jsh": "url"
+      }
+    },
+    {
+      "name": "二维码生成",
+      "path": "/v1/qrcode",
+      "description": "将文本内容生成为二维码图片（返回PNG）",
+      "keywords": [
+        "二维码生成"
+      ],
+      "params": {
+        "text": "文本内容",
+        "size": "图片大小(px)"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "五等分的新娘随机图片",
+      "path": "/v1/quintuplets/random",
+      "description": "随机返回一张五等分的新娘高清壁纸图片。",
+      "keywords": [
+        "五等分的新娘"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "随机一言",
+      "path": "/v1/quote",
+      "description": "获取随机一言，支持12种分类筛选（动画/漫画/游戏/文学/诗词/哲学等）",
+      "keywords": [
+        "随机一言"
+      ],
+      "params": {
+        "type": "分类筛选，可多选（逗号分隔）：a动画 b漫画 c游戏 d文学 e原创 f网络 g其他 h影视 i诗词 j网易云 k哲学 l抖机灵",
+        "min_length": "最小长度（字数）",
+        "max_length": "最大长度（字数），默认100"
+      },
+      "required_params": []
+    },
+    {
+      "name": "随机数生成",
+      "path": "/v1/random",
+      "description": "生成指定范围内的随机数",
+      "keywords": [
+        "随机数"
+      ],
+      "params": {
+        "min": "最小值",
+        "max": "最大值"
+      },
+      "required_params": []
+    },
+    {
+      "name": "随机图片",
+      "path": "/v1/random/image",
+      "description": "获取一张随机图片链接，支持自定义宽高",
+      "keywords": [
+        "随机图片"
+      ],
+      "params": {
+        "width": "图片宽度（默认 800）",
+        "height": "图片高度（默认 600）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "随机字符串",
+      "path": "/v1/random/string",
+      "description": "生成随机字符串，支持多种字符集：字母数字/纯字母/纯数字/十六进制/自定义",
+      "keywords": [
+        "随机字符串"
+      ],
+      "params": {
+        "length": "字符串长度（1-1024，默认 16）",
+        "charset": "字符集：alphanumeric/alpha/numeric/hex/upper_hex/lower/upper/custom"
+      },
+      "required_params": []
+    },
+    {
+      "name": "正则测试",
+      "path": "/v1/regex",
+      "description": "正则表达式在线测试，返回匹配结果和捕获组",
+      "keywords": [
+        "正则测试"
+      ],
+      "params": {
+        "pattern": "正则表达式",
+        "text": "待匹配文本"
+      },
+      "required_params": [
+        "pattern",
+        "text"
+      ]
+    },
+    {
+      "name": "行政区域查询",
+      "path": "/v1/region",
+      "description": "根据关键词或行政区划代码查询国内省、市、区信息",
+      "keywords": [
+        "行政区域"
+      ],
+      "params": {
+        "keyword": "搜索关键词（如'北京'、'海淀'）",
+        "code": "行政区划代码"
+      },
+      "required_params": []
+    },
+    {
+      "name": "文档重排序",
+      "path": "/v1/rerank",
+      "description": "对一组文档按与查询文本的相关性进行重新排序，广泛用于 RAG 检索增强生成、搜索引擎结果优化、推荐系统等场景。",
+      "keywords": [
+        "文档重排序"
+      ],
+      "params": {
+        "query": "查询文本，用于和文档做相关性比对",
+        "documents": "待排序的文档列表，字符串数组（最多50条）",
+        "top_n": "返回最相关的文档数量，默认返回全部"
+      },
+      "required_params": [
+        "query",
+        "documents"
+      ]
+    },
+    {
+      "name": "从零开始的异世界生活随机图片",
+      "path": "/v1/rezero/random",
+      "description": "随机返回一张从零开始的异世界生活高清壁纸图片。",
+      "keywords": [
+        "从零开始的异世界生活"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "洛克王国活动列表",
+      "path": "/v1/roco/activities",
+      "description": "查询洛克王国当前所有活动，含时间/状态/奖励列表",
+      "keywords": [
+        "洛克王国活动"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "洛克王国盲盒提示语",
+      "path": "/v1/roco/box-tips",
+      "description": "查询洛克王国盲盒提示语和分享码",
+      "keywords": [
+        "洛克王国盲盒"
+      ],
+      "params": {
+        "keyword": "关键词搜索",
+        "page": "页码，默认1",
+        "page_size": "每页条数，默认20"
+      },
+      "required_params": []
+    },
+    {
+      "name": "洛克王国道具图鉴",
+      "path": "/v1/roco/dict",
+      "description": "查询洛克王国209个道具、材料、性格等基础数据",
+      "keywords": [
+        "洛克王国道具"
+      ],
+      "params": {
+        "type": "类型ID(1=性格,2=属性,3=道具)",
+        "keyword": "关键词搜索",
+        "page": "页码，默认1",
+        "page_size": "每页条数，默认20，最大100"
+      },
+      "required_params": []
+    },
+    {
+      "name": "洛克王国孵蛋推测",
+      "path": "/v1/roco/egg",
+      "description": "根据蛋的尺寸和重量推测可能的宠物种类",
+      "keywords": [
+        "洛克王国孵蛋"
+      ],
+      "params": {
+        "size": "蛋尺寸（cm），范围0.01~2.0",
+        "weight": "蛋重量（g）",
+        "show_details": "是否显示详情"
+      },
+      "required_params": [
+        "size",
+        "weight"
+      ]
+    },
+    {
+      "name": "洛克王国精灵评分",
+      "path": "/v1/roco/elf",
+      "description": "查询洛克王国精灵列表（371只），支持按名称搜索；传个体值参数可计算精灵评分",
+      "keywords": [
+        "洛克王国精灵"
+      ],
+      "params": {
+        "id": "精灵ID",
+        "name": "精灵名称（模糊匹配）",
+        "page": "页码，默认1",
+        "page_size": "每页条数，默认20，最大50",
+        "attr1": "评分属性1编号(1物攻2物防3特攻4特防5速度6体力)",
+        "num1": "属性1个体值(0-31)",
+        "attr2": "评分属性2编号",
+        "num2": "属性2个体值(0-31)",
+        "attr3": "评分属性3编号",
+        "num3": "属性3个体值(0-31)",
+        "nature": "性格名或ID(如开朗/46)"
+      },
+      "required_params": []
+    },
+    {
+      "name": "洛克王国远行商人",
+      "path": "/v1/roco/merchant",
+      "description": "查询洛克王国远行商人当前轮次在售商品、价格、限购数量及全部轮次商品信息。数据每4小时刷新一次。",
+      "keywords": [
+        "洛克王国远行"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "洛克王国商人日历",
+      "path": "/v1/roco/merchant/calendar",
+      "description": "查询指定月份哪天卖什么商品，按日期分组",
+      "keywords": [
+        "洛克王国商人"
+      ],
+      "params": {
+        "month": "月份(1-12)",
+        "year": "年份，默认当年"
+      },
+      "required_params": [
+        "month"
+      ]
+    },
+    {
+      "name": "洛克王国远行商人（2号）",
+      "path": "/v1/roco/merchant/today",
+      "description": "查询今日洛克王国远行商人出售的所有商品，按4个时段分批，含价格/限购/标签/推荐度",
+      "keywords": [
+        "洛克王国远行商人2"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "洛克王国性格列表",
+      "path": "/v1/roco/natures",
+      "description": "查询洛克王国25种性格及其增加/减少的属性",
+      "keywords": [
+        "洛克王国性格"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "洛克王国宠物详情",
+      "path": "/v1/roco/pet",
+      "description": "查询洛克王国宠物详情，包含种族值、技能、进化链及多形态数据",
+      "keywords": [
+        "洛克王国宠物"
+      ],
+      "params": {
+        "id": "宠物ID"
+      },
+      "required_params": [
+        "id"
+      ]
+    },
+    {
+      "name": "洛克王国宠物图鉴",
+      "path": "/v1/roco/pets",
+      "description": "查询洛克王国世界宠物图鉴，支持分页、搜索和属性筛选",
+      "keywords": [
+        "洛克王国宠物图鉴"
+      ],
+      "params": {
+        "page": "页码（默认1）",
+        "search": "搜索关键词",
+        "attribute": "属性筛选"
+      },
+      "required_params": []
+    },
+    {
+      "name": "洛克王国精灵PK对比",
+      "path": "/v1/roco/pk",
+      "description": "对比两只精灵的个体值评分，返回各自评分和胜者",
+      "keywords": [
+        "洛克王国PK"
+      ],
+      "params": {
+        "id1": "精灵1 ID",
+        "name1": "精灵1名称",
+        "attr1_a": "精灵1属性1编号(1-6)",
+        "num1_a": "精灵1属性1个体值(0-31)",
+        "attr2_a": "精灵1属性2编号",
+        "num2_a": "精灵1属性2个体值",
+        "attr3_a": "精灵1属性3编号",
+        "num3_a": "精灵1属性3个体值",
+        "nature_a": "精灵1性格名或ID",
+        "id2": "精灵2 ID",
+        "name2": "精灵2名称",
+        "attr1_b": "精灵2属性1编号",
+        "num1_b": "精灵2属性1个体值",
+        "attr2_b": "精灵2属性2编号",
+        "num2_b": "精灵2属性2个体值",
+        "attr3_b": "精灵2属性3编号",
+        "num3_b": "精灵2属性3个体值",
+        "nature_b": "精灵2性格名或ID"
+      },
+      "required_params": []
+    },
+    {
+      "name": "洛克王国技能图鉴",
+      "path": "/v1/roco/skills",
+      "description": "查询洛克王国技能图鉴，支持搜索、属性和分类筛选，共475个技能",
+      "keywords": [
+        "洛克王国技能"
+      ],
+      "params": {
+        "search": "搜索关键词",
+        "attribute": "属性筛选",
+        "category": "分类（物攻/魔攻/状态）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "洛克王国游戏词条",
+      "path": "/v1/roco/terms",
+      "description": "查询洛克王国游戏词条解释，包括印记、天气、负面效果等",
+      "keywords": [
+        "洛克王国词条"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "洛克王国养成计算",
+      "path": "/v1/roco/train",
+      "description": "计算精灵从指定等级/星级到目标等级/星级所需材料",
+      "keywords": [
+        "洛克王国养成"
+      ],
+      "params": {
+        "id": "精灵ID",
+        "name": "精灵名称（模糊匹配）",
+        "min_level": "当前等级，默认1",
+        "max_level": "目标等级，默认60",
+        "min_star": "当前星级，默认0",
+        "max_star": "目标星级，默认5"
+      },
+      "required_params": []
+    },
+    {
+      "name": "洛克王国属性克制表",
+      "path": "/v1/roco/type-chart",
+      "description": "查询洛克王国完整属性克制表，18种属性的攻击/防御倍率矩阵",
+      "keywords": [
+        "洛克王国属性"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "敏感词检测",
+      "path": "/v1/sensitiveword",
+      "description": "敏感词/违禁词检测，基于测罗API在线检测（涉政/涉黄/暴恐/广告违禁/极限词等），支持脱敏文本输出，本地词库降级",
+      "keywords": [
+        "敏感词"
+      ],
+      "params": {
+        "text": "待检测文本"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "据意查句",
+      "path": "/v1/sentence",
+      "description": "根据关键词查找对应的名言佳句",
+      "keywords": [
+        "据意查句"
+      ],
+      "params": {
+        "keyword": "关键词"
+      },
+      "required_params": []
+    },
+    {
+      "name": "SHA 哈希",
+      "path": "/v1/sha256",
+      "description": "支持 SHA256/SHA512 哈希计算",
+      "keywords": [
+        "SHA"
+      ],
+      "params": {
+        "text": "待哈希文本",
+        "algo": "算法：sha256/sha512（默认sha256）"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "短链接生成",
+      "path": "/v1/shorten",
+      "description": "将长链接缩短为短链接（基于 clc.is），支持自定义短码和过期时间。GET/POST 均可调用。",
+      "keywords": [
+        "短链接"
+      ],
+      "params": {
+        "url": "要缩短的长链接",
+        "slug": "自定义短码（可选）",
+        "expired_hours": "过期时间（小时，0=不过期）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "网站地图生成",
+      "path": "/v1/sitemap",
+      "description": "网站地图生成 — 爬取指定网站页面链接，生成标准sitemap.xml，最大深度3层，最多500个URL",
+      "keywords": [
+        "网站地图"
+      ],
+      "params": {
+        "url": "目标网站URL",
+        "depth": "爬取深度（1-3，默认3）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "Steam账户价值",
+      "path": "/v1/steam/account-value",
+      "description": "查询Steam账户的游戏库价值（史低/当前/最高）、游戏统计、在线时长、账户等级、封禁状态等",
+      "keywords": [
+        "Steam价值"
+      ],
+      "params": {
+        "steamid": "SteamID64 或自定义URL"
+      },
+      "required_params": [
+        "steamid"
+      ],
+      "param_types": {
+        "steamid": "url"
+      }
+    },
+    {
+      "name": "Steam全球成就",
+      "path": "/v1/steam/achievements",
+      "description": "查询 Steam 游戏全球成就达成率。",
+      "keywords": [
+        "Steam全球成就"
+      ],
+      "params": {
+        "appid": "Steam AppID",
+        "name": "游戏名称"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam游戏详情",
+      "path": "/v1/steam/app",
+      "description": "查询 Steam 游戏详细信息，包含中文描述、截图、配置要求、开发商、DLC 数量等。支持 appid 或 name 查询。",
+      "keywords": [
+        "Steam游戏详情"
+      ],
+      "params": {
+        "appid": "Steam AppID（和 name 二选一）",
+        "name": "游戏名称"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam即将推出",
+      "path": "/v1/steam/coming-soon",
+      "description": "获取Steam即将推出的游戏列表",
+      "keywords": [
+        "Steam即将推出"
+      ],
+      "params": {
+        "limit": "返回数量，1-50，默认10"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam每日特惠",
+      "path": "/v1/steam/daily-deal",
+      "description": "获取Steam每日特惠游戏（每日一款深度折扣）",
+      "keywords": [
+        "Steam每日特惠"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "Steam游戏DLC",
+      "path": "/v1/steam/dlc",
+      "description": "查询Steam游戏的DLC列表，支持分页浏览，每页最多100条",
+      "keywords": [
+        "SteamDLC"
+      ],
+      "params": {
+        "appid": "游戏AppID（与name二选一）",
+        "name": "游戏名称（与appid二选一）",
+        "limit": "每页数量，1-100，默认20",
+        "page": "页码，默认1"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam热销新品",
+      "path": "/v1/steam/featured",
+      "description": "查询 Steam 热销榜、新品发售、即将推出的游戏。",
+      "keywords": [
+        "Steam热销新品"
+      ],
+      "params": {
+        "limit": "每类返回数量，默认10"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam限时免费游戏",
+      "path": "/v1/steam/free",
+      "description": "当前Steam限时免费促销游戏（原价→0元）",
+      "keywords": [
+        "Steam限时免费游戏"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "Steam媒体评分",
+      "path": "/v1/steam/metacritic",
+      "description": "查询Steam游戏的Metacritic媒体评分和Steam推荐数",
+      "keywords": [
+        "Steam媒体评分"
+      ],
+      "params": {
+        "appid": "游戏AppID（与name二选一）",
+        "name": "游戏名称（与appid二选一）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam游戏新闻",
+      "path": "/v1/steam/news",
+      "description": "查询 Steam 游戏最新新闻动态。",
+      "keywords": [
+        "Steam游戏新闻"
+      ],
+      "params": {
+        "appid": "Steam AppID",
+        "name": "游戏名称",
+        "count": "新闻数量，默认5"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam在线人数",
+      "path": "/v1/steam/players",
+      "description": "查询 Steam 游戏当前在线玩家人数。",
+      "keywords": [
+        "Steam在线人数"
+      ],
+      "params": {
+        "appid": "Steam AppID",
+        "name": "游戏名称"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam游戏价格",
+      "path": "/v1/steam/price",
+      "description": "查询 Steam 游戏当前价格、折扣信息（国区人民币）。",
+      "keywords": [
+        "Steam游戏价格"
+      ],
+      "params": {
+        "appid": "Steam AppID",
+        "name": "游戏名称"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam系统需求",
+      "path": "/v1/steam/requirements",
+      "description": "查询Steam游戏的PC/Mac/Linux系统配置需求",
+      "keywords": [
+        "Steam系统需求"
+      ],
+      "params": {
+        "appid": "游戏AppID（与name二选一）",
+        "name": "游戏名称（与appid二选一）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam游戏评价",
+      "path": "/v1/steam/reviews",
+      "description": "查询 Steam 游戏的中文用户评价，包含好评/差评数和评价摘要。",
+      "keywords": [
+        "Steam游戏评价"
+      ],
+      "params": {
+        "appid": "Steam AppID",
+        "name": "游戏名称",
+        "limit": "评价数量，默认5"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam游戏搜索",
+      "path": "/v1/steam/search",
+      "description": "按名称搜索 Steam 游戏，返回 AppID、名称、价格、折扣信息。",
+      "keywords": [
+        "Steam游戏搜索"
+      ],
+      "params": {
+        "keyword": "搜索关键词",
+        "limit": "返回数量，默认10"
+      },
+      "required_params": [
+        "keyword"
+      ]
+    },
+    {
+      "name": "Steam特惠游戏",
+      "path": "/v1/steam/specials",
+      "description": "查询 Steam 当前特惠/折扣游戏列表。",
+      "keywords": [
+        "Steam特惠游戏"
+      ],
+      "params": {
+        "limit": "返回数量，默认20"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam标签搜索",
+      "path": "/v1/steam/tag-search",
+      "description": "按中文标签搜索Steam游戏，支持30+标签，支持排序和分页",
+      "keywords": [
+        "Steam标签搜索"
+      ],
+      "params": {
+        "tag": "中文标签名（恐怖/开放世界/RPG/策略/模拟/生存/竞速/恋爱/像素/沙盒/解谜/冒险/潜行/科幻/太空/僵尸/战争/建造/休闲/音乐等）",
+        "sort": "排序方式：Reviews(默认)/price_asc/price_desc/released/name",
+        "count": "每页数量，1-50，默认10",
+        "page": "页码，默认1"
+      },
+      "required_params": [
+        "tag"
+      ]
+    },
+    {
+      "name": "Steam在线TOP",
+      "path": "/v1/steam/top",
+      "description": "查询 Steam 全球同时在线排行榜（Top100 游戏）。",
+      "keywords": [
+        "Steam在线TOP"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "Steam热销榜",
+      "path": "/v1/steam/top-sellers",
+      "description": "获取Steam当前热销游戏排行榜",
+      "keywords": [
+        "Steam热销榜"
+      ],
+      "params": {
+        "limit": "返回数量，1-50，默认10"
+      },
+      "required_params": []
+    },
+    {
+      "name": "Steam价值排行榜",
+      "path": "/v1/steam/value-ranking",
+      "description": "全球Steam账户游戏库价值排行榜",
+      "keywords": [
+        "Steam价值"
+      ],
+      "params": {
+        "limit": "返回数量，1-50，默认10"
+      },
+      "required_params": []
+    },
+    {
+      "name": "科技资讯",
+      "path": "/v1/technews",
+      "description": "获取最新实时科技资讯",
+      "keywords": [
+        "科技资讯"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "临时邮箱-生成",
+      "path": "/v1/tempmail/generate",
+      "description": "生成一个临时邮箱地址，10 分钟内有效，可接收邮件。配合「临时邮箱-获取邮件」接口查收邮件。",
+      "keywords": [
+        "临时邮箱"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "临时邮箱-获取邮件",
+      "path": "/v1/tempmail/mails",
+      "description": "获取指定临时邮箱收到的邮件列表，包含发件人、主题、时间和正文内容。需先通过「临时邮箱-生成」接口获取邮箱地址。",
+      "keywords": [
+        "获取邮件"
+      ],
+      "params": {
+        "email": "临时邮箱地址"
+      },
+      "required_params": [
+        "email"
+      ],
+      "param_types": {
+        "email": "url"
+      }
+    },
+    {
+      "name": "文本统计分析（本地版）",
+      "path": "/v1/text/analyze",
+      "description": "对文本进行全面统计分析，包括字数、词频、标点符号、段落、句子等维度，支持中英文混合文本",
+      "keywords": [
+        "文本统计分析"
+      ],
+      "params": {
+        "text": "待分析的文本内容"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "文本统计分析（AI版）",
+      "path": "/v1/text/analyze/ai",
+      "description": "利用AI大模型对文本进行深层语义分析，包括情感分析、关键词提取、摘要生成、语言检测、可读性评分、主题分类、语法纠错、写作风格分析等8个维度",
+      "keywords": [
+        "文本统计分析2"
+      ],
+      "params": {
+        "text": "待分析的文本内容（最长10000字符）"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "AI文本违规检测",
+      "path": "/v1/text/detect",
+      "description": "AI文本违规检测 — 一键检测文本是否违规，覆盖色情、暴力、仇恨言论、政治敏感、辱骂、垃圾信息、诈骗、隐私泄露8大类别，返回详细风险评分和处理建议",
+      "keywords": [
+        "AI文本违规"
+      ],
+      "params": {
+        "text": "待检测文本（最多5000字符）",
+        "lang": "回答语言，zh=中文（默认），en=英文"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "查询世界时间",
+      "path": "/v1/time",
+      "description": "查询全球各时区的当前时间",
+      "keywords": [
+        "世界时间"
+      ],
+      "params": {
+        "timezone": "时区"
+      },
+      "required_params": []
+    },
+    {
+      "name": "时间戳转换",
+      "path": "/v1/timestamp",
+      "description": "Unix时间戳与可读时间互转，支持秒级和毫秒级",
+      "keywords": [
+        "时间戳"
+      ],
+      "params": {
+        "value": "时间戳（不传则返回当前时间）",
+        "format": "输出格式（默认auto）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "东方Project随机图片",
+      "path": "/v1/touhou/random",
+      "description": "随机返回一张东方Project高清壁纸图片。",
+      "keywords": [
+        "东方Project"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "文本翻译",
+      "path": "/v1/translate",
+      "description": "支持多语言文本翻译",
+      "keywords": [
+        "文本翻译"
+      ],
+      "params": {
+        "text": "待翻译文本",
+        "to": "目标语言"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "AI 智能翻译",
+      "path": "/v1/translate/ai",
+      "description": "AI 智能翻译，支持 33 种语言互译，自动检测源语言",
+      "keywords": [
+        "智能翻译"
+      ],
+      "params": {
+        "text": "待翻译文本",
+        "from": "源语言代码（如zh/en/ja，不传则自动检测）",
+        "to": "目标语言代码（默认en）"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "AI 翻译配置",
+      "path": "/v1/translate/config",
+      "description": "查询 AI 翻译接口支持的语言列表和功能说明",
+      "keywords": [
+        "翻译配置"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "城际路线查询",
+      "path": "/v1/travel/route",
+      "description": "查询两个城市之间的驾车路线，返回距离、预计时间、油费、过路费和总费用。",
+      "keywords": [
+        "城际路线"
+      ],
+      "params": {
+        "from": "出发城市",
+        "to": "目的城市"
+      },
+      "required_params": [
+        "from",
+        "to"
+      ]
+    },
+    {
+      "name": "赛马娘随机图片",
+      "path": "/v1/umamusume/random",
+      "description": "随机返回一张赛马娘高清壁纸图片。",
+      "keywords": [
+        "赛马娘"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "单位转换",
+      "path": "/v1/unit/convert",
+      "description": "长度/重量/温度/面积/体积/速度 单位互转",
+      "keywords": [
+        "单位转换"
+      ],
+      "params": {
+        "value": "数值",
+        "from": "源单位",
+        "to": "目标单位",
+        "type": "类型(length/weight/temperature/area/volume/speed)"
+      },
+      "required_params": [
+        "value",
+        "from",
+        "to"
+      ]
+    },
+    {
+      "name": "域名安全检测",
+      "path": "/v1/url/check",
+      "description": "检测域名是否被QQ安全中心或微信拦截，返回拦截类型和详细说明。一次检测同时覆盖QQ和微信两个平台。",
+      "keywords": [
+        "域名安全"
+      ],
+      "params": {
+        "url": "要检测的域名"
+      },
+      "required_params": [
+        "url"
+      ]
+    },
+    {
+      "name": "URL 编解码",
+      "path": "/v1/urlencode",
+      "description": "URL 编码与解码，处理特殊字符和中文",
+      "keywords": [
+        "URL编解码"
+      ],
+      "params": {
+        "text": "待处理文本",
+        "mode": "encode/decode（默认encode）"
+      },
+      "required_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "UUID 生成",
+      "path": "/v1/uuid",
+      "description": "生成 UUID v4 唯一标识符，支持批量生成（最多100个）",
+      "keywords": [
+        "UUID生成"
+      ],
+      "params": {
+        "count": "生成数量（默认1，最多100）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "短视频聚合解析",
+      "path": "/v1/video/parse",
+      "description": "短视频去水印解析，支持抖音、快手、小红书、B 站、微博、今日头条等平台。返回标题、封面、无水印视频直链、作者信息和背景音乐。⚠️ 仅供学习交流。",
+      "keywords": [
+        "短视频解析"
+      ],
+      "params": {
+        "url": "短视频分享链接（支持抖音/快手/小红书/B站/皮皮虾/皮皮搞笑/微博/今日头条）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "短视频聚合解析2",
+      "path": "/v1/video/parse2",
+      "description": "聚合 1000+ 平台短视频去水印解析，支持抖音、B 站、小红书、快手、微博、TikTok、YouTube、Instagram、Twitter 等。返回标题、作者、封面和媒体直链。",
+      "keywords": [
+        "短视频聚合解析2"
+      ],
+      "params": {
+        "url": "短视频分享链接"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "短视频聚合解析3",
+      "path": "/v1/video/parse3",
+      "description": "短视频去水印解析（备用线路 3），支持 B 站、抖音、快手等主流平台。返回平台识别结果、标题、封面和媒体资源直链列表。",
+      "keywords": [
+        "短视频聚合解析3"
+      ],
+      "params": {
+        "url": "短视频分享链接"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "url"
+      }
+    },
+    {
+      "name": "短视频聚合解析4",
+      "path": "/v1/video/parse4",
+      "description": "解析短视频平台链接（支持B站、抖音、快手等），去除水印返回视频直链、封面、作者信息和视频简介。",
+      "keywords": [
+        "短视频聚合解析4"
+      ],
+      "params": {
+        "url": "视频链接"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "video_url"
+      }
+    },
+    {
+      "name": "动漫随机图片",
+      "path": "/v1/wallpaper/anime",
+      "description": "随机返回一张动漫高清壁纸图片。",
+      "keywords": [
+        "动漫"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "明日方舟随机图片",
+      "path": "/v1/wallpaper/arknights",
+      "description": "随机返回一张明日方舟高清壁纸图片。",
+      "keywords": [
+        "明日方舟图片"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "进击的巨人随机图片",
+      "path": "/v1/wallpaper/attack-on-titan",
+      "description": "随机返回一张进击的巨人高清壁纸图片。",
+      "keywords": [
+        "进击的巨人"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "碧蓝航线随机图片",
+      "path": "/v1/wallpaper/azur-lane",
+      "description": "随机返回一张碧蓝航线高清壁纸图片。",
+      "keywords": [
+        "碧蓝航线"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "鬼灭之刃随机图片",
+      "path": "/v1/wallpaper/demon-slayer",
+      "description": "随机返回一张鬼灭之刃高清壁纸图片。",
+      "keywords": [
+        "鬼灭之刃"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "原神随机图片",
+      "path": "/v1/wallpaper/genshin",
+      "description": "随机返回一张原神高清壁纸图片。",
+      "keywords": [
+        "原神"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "崩坏星穹铁道随机图片",
+      "path": "/v1/wallpaper/honkai-star-rail",
+      "description": "随机返回一张崩坏：星穹铁道高清壁纸图片。",
+      "keywords": [
+        "崩坏星穹铁道"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "崩坏3随机图片",
+      "path": "/v1/wallpaper/honkai3",
+      "description": "随机返回一张崩坏3高清壁纸图片。",
+      "keywords": [
+        "崩坏3"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "王者荣耀随机图片",
+      "path": "/v1/wallpaper/honor-of-kings",
+      "description": "随机返回一张王者荣耀高清壁纸图片。",
+      "keywords": [
+        "王者荣耀"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "咒术回战随机图片",
+      "path": "/v1/wallpaper/jujutsu-kaisen",
+      "description": "随机返回一张咒术回战高清壁纸图片。",
+      "keywords": [
+        "咒术回战"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "火影忍者随机图片",
+      "path": "/v1/wallpaper/naruto",
+      "description": "随机返回一张火影忍者高清壁纸图片。",
+      "keywords": [
+        "火影忍者"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "海贼王随机图片",
+      "path": "/v1/wallpaper/one-piece",
+      "description": "随机返回一张海贼王高清壁纸图片。",
+      "keywords": [
+        "海贼王"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "间谍过家家随机图片",
+      "path": "/v1/wallpaper/spy-x-family",
+      "description": "随机返回一张间谍过家家高清壁纸图片。",
+      "keywords": [
+        "间谍过家家"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "鸣潮随机图片",
+      "path": "/v1/wallpaper/wuthering-waves",
+      "description": "随机返回一张鸣潮高清壁纸图片。",
+      "keywords": [
+        "鸣潮"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "天气查询",
+      "path": "/v1/weather",
+      "description": "查询城市实时天气、生活指数、短临降水预报，支持10天预报和逐小时预报",
+      "keywords": [
+        "天气"
+      ],
+      "params": {
+        "city": "城市名（中文/英文）",
+        "forecast": "是否返回10天预报+逐小时数据"
+      },
+      "required_params": [
+        "city"
+      ]
+    },
+    {
+      "name": "天气查询2",
+      "path": "/v1/weather2",
+      "description": "查询城市天气信息，返回当前天气、24小时预报、7天预报。输入中文城市名即可查询。",
+      "keywords": [
+        "天气查询2"
+      ],
+      "params": {
+        "city": "城市名称，如：北京、上海、广州"
+      },
+      "required_params": [
+        "city"
+      ]
+    },
+    {
+      "name": "智能搜索",
+      "path": "/v1/web/search",
+      "description": "基于 AI 的智能网页搜索，输入关键词返回网页结果和 AI 综合回答。支持控制结果数量和搜索深度。",
+      "keywords": [
+        "智能搜索"
+      ],
+      "params": {
+        "query": "搜索关键词",
+        "max_results": "最大结果数（默认5，最大10）",
+        "search_depth": "搜索深度：basic（快速）或 advanced（深度）",
+        "include_answer": "是否包含AI生成的回答（默认true）"
+      },
+      "required_params": [
+        "query"
+      ]
+    },
+    {
+      "name": "微信拦截查询",
+      "path": "/v1/wechat/check",
+      "description": "检测域名是否被微信拦截，返回拦截状态、标题和详细说明。",
+      "keywords": [
+        "微信拦截"
+      ],
+      "params": {
+        "url": "域名"
+      },
+      "required_params": [
+        "url"
+      ]
+    },
+    {
+      "name": "微博图片反查",
+      "path": "/v1/weibo/image-decode",
+      "description": "根据微博图片链接（sinaimg.cn）反查图片发布者的 UID 和主页地址。纯算法解析，无需外部接口。",
+      "keywords": [
+        "微博图片反查"
+      ],
+      "params": {
+        "url": "微博图片地址（sinaimg.cn 域名）"
+      },
+      "required_params": [
+        "url"
+      ],
+      "param_types": {
+        "url": "image_url"
+      }
+    },
+    {
+      "name": "WHOIS 域名查询",
+      "path": "/v1/whois",
+      "description": "查询域名注册信息",
+      "keywords": [
+        "WHOIS"
+      ],
+      "params": {
+        "domain": "域名"
+      },
+      "required_params": [
+        "domain"
+      ]
+    },
+    {
+      "name": "维基百科搜索",
+      "path": "/v1/wiki/search",
+      "description": "搜索维基百科词条，返回标题、摘要、链接、字数等信息。支持中文/英文/日文等10种语言。",
+      "keywords": [
+        "维基百科"
+      ],
+      "params": {
+        "word": "搜索关键词",
+        "limit": "返回数量，默认5，最大20",
+        "lang": "语言，默认zh，支持zh/en/ja/ko/fr/de/es/ru/pt/ar"
+      },
+      "required_params": [
+        "word"
+      ]
+    },
+    {
+      "name": "维基百科摘要",
+      "path": "/v1/wiki/summary",
+      "description": "获取维基百科词条的详细摘要，包含标题、简介、缩略图、页面链接。",
+      "keywords": [
+        "维基摘要"
+      ],
+      "params": {
+        "title": "词条标题",
+        "lang": "语言，默认zh"
+      },
+      "required_params": [
+        "title"
+      ]
+    },
+    {
+      "name": "王者荣耀英雄查询",
+      "path": "/v1/wzry/hero",
+      "description": "查询王者荣耀英雄完整信息，包含世界观资料（台词、种族、势力、阵营、身高、身份）、英雄故事、历史原型、属性、技能、皮肤列表。支持按名称/拼音/称号搜索，按类型筛选。",
+      "keywords": [
+        "王者荣耀英雄"
+      ],
+      "params": {
+        "keyword": "搜索关键词（名称/拼音/称号），不传返回全部",
+        "type": "英雄类型：战士/法师/坦克/刺客/射手/辅助"
+      },
+      "required_params": []
+    },
+    {
+      "name": "王者荣耀英雄列表",
+      "path": "/v1/wzry/heroes",
+      "description": "获取王者荣耀全部130位英雄列表，支持按名称搜索",
+      "keywords": [
+        "王者荣耀英雄列表"
+      ],
+      "params": {
+        "search": "搜索关键词（英雄名或称号）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "王者荣耀战力查询",
+      "path": "/v1/wzry/power",
+      "description": "查询王者荣耀英雄在各平台（安卓QQ/安卓微信/iOS QQ/iOS微信）的省/市/区最低战力分数及国标分数",
+      "keywords": [
+        "王者荣耀战力"
+      ],
+      "params": {
+        "hero": "英雄名称",
+        "type": "平台类型：aqq(安卓QQ)/awx(安卓微信)/iqq(iOS QQ)/iwx(iOS微信)，不填返回全部"
+      },
+      "required_params": [
+        "hero"
+      ]
+    },
+    {
+      "name": "王者荣耀皮肤查询",
+      "path": "/v1/wzry/skin",
+      "description": "查询王者荣耀英雄的所有皮肤，返回每套皮肤的名称和高清图片链接。",
+      "keywords": [
+        "王者荣耀皮肤"
+      ],
+      "params": {
+        "name": "英雄名称（支持中文名和拼音）"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "王者荣耀语音查询",
+      "path": "/v1/wzry/voice",
+      "description": "查询王者荣耀英雄的所有语音台词，返回每条台词的文本和 MP3 音频链接。支持中文名和拼音搜索。",
+      "keywords": [
+        "王者荣耀语音"
+      ],
+      "params": {
+        "name": "英雄名称（支持中文名和拼音）"
+      },
+      "required_params": [
+        "name"
+      ]
+    },
+    {
+      "name": "小米步数修改",
+      "path": "/v1/xiaomi/steps",
+      "description": "通过 Zeep 账号修改小米手环/手表每日步数。需提供 Zeep 登录邮箱、密码和目标步数，修改后同步到手环。",
+      "keywords": [
+        "小米步数修改"
+      ],
+      "params": {
+        "user": "Zeep账号（邮箱）",
+        "pass": "Zeep密码",
+        "steps": "目标步数"
+      },
+      "required_params": [
+        "user",
+        "pass",
+        "steps"
+      ]
+    },
+    {
+      "name": "歇后语",
+      "path": "/v1/xiehouyu",
+      "description": "随机生成一条歇后语",
+      "keywords": [
+        "歇后语"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "YouTuber随机图片",
+      "path": "/v1/youtuber/random",
+      "description": "随机返回一张YouTuber高清壁纸图片。",
+      "keywords": [
+        "YouTuber"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "星座运势",
+      "path": "/v1/zodiac",
+      "description": "查询12星座今日详细运势（综合/爱情/事业/财富/健康），含幸运颜色、幸运数字、速配星座",
+      "keywords": [
+        "星座运势"
+      ],
+      "params": {
+        "sign": "星座名称（如 白羊座/aries），不传返回全部12星座"
+      },
+      "required_params": []
+    },
+    {
+      "name": "绝区零图鉴百科",
+      "path": "/v1/zzz/collection",
+      "description": "201条图鉴数据，角色55/音擎74/驱动盘36/邦布36，支持分类过滤和关键词搜索",
+      "keywords": [
+        "绝区零图鉴"
+      ],
+      "params": {
+        "category": "分类：角色/音擎/驱动盘/邦布",
+        "keyword": "关键词搜索"
+      },
+      "required_params": []
+    },
+    {
+      "name": "绝区零图鉴详情",
+      "path": "/v1/zzz/collection/detail",
+      "description": "角色含属性/特性/技能加点/音擎推荐/驱动推荐/配队方案；音擎含稀有度/面板/效果；驱动盘含套装效果；邦布含技能",
+      "keywords": [
+        "绝区零图鉴详情"
+      ],
+      "params": {
+        "id": "条目ID",
+        "name": "条目名称（模糊匹配）"
+      },
+      "required_params": []
+    },
+    {
+      "name": "绝区零随机图片",
+      "path": "/v1/zzz/random",
+      "description": "随机返回一张绝区零高清壁纸图片。",
+      "keywords": [
+        "绝区零"
+      ],
+      "params": {},
+      "required_params": []
+    },
+    {
+      "name": "绝区零兑换码",
+      "path": "/v1/zzz/redeem",
+      "description": "查询绝区零游戏兑换码，含常用码/直播码/前瞻兑换码，默认只返回有效的",
+      "keywords": [
+        "绝区零兑换码"
+      ],
+      "params": {
+        "type": "类型过滤：常用码/直播码/前瞻兑换码",
+        "all": "true=返回含过期，默认只返回有效码"
+      },
+      "required_params": []
+    }
+  ]
+}

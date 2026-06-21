@@ -1,0 +1,10 @@
+{
+  "sites": [
+    {
+      "name": "TinyAPI主站",
+      "url": "https://api.tinyaii.top",
+      "description": "TinyAPI 290+免费API接口平台",
+      "enabled": true
+    }
+  ]
+}
