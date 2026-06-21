@@ -460,9 +460,17 @@ class TinyAPIPlugin(Star):
                 result_obj.message(text_content)
 
             # 再追加媒体（图片/视频/音频）
+            # QQ 单条消息有媒体数量限制，图片超过上限会发送失败，需限制数量
+            media_image_count = 0
+            MAX_IMAGES_PER_MESSAGE = 5  # 单条消息最多发送5张图片
+
             for media_type, content in media_items:
                 if media_type == "image":
-                    logger.info(f"[TinyAPI] 追加图片到消息: {content[:80]}")
+                    if media_image_count >= MAX_IMAGES_PER_MESSAGE:
+                        logger.warning(f"[TinyAPI] 图片已达上限({MAX_IMAGES_PER_MESSAGE}张)，跳过: {content[:60]}")
+                        continue
+                    media_image_count += 1
+                    logger.info(f"[TinyAPI] 追加图片到消息({media_image_count}/{MAX_IMAGES_PER_MESSAGE}): {content[:80]}")
                     result_obj.chain.append(Comp.Image.fromURL(url=content))
                 elif media_type == "video":
                     logger.info(f"[TinyAPI] 追加视频到消息: {content[:80]}")
