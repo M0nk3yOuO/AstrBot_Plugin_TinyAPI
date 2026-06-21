@@ -896,7 +896,7 @@
       "path": "/v1/df/price",
       "description": "查询三角洲物品的最新价格和历史价格走势。",
       "keywords": [
-        "洲价格"
+        "三角洲价格"
       ],
       "params": {
         "id": "物品ID（和 name 二选一）",

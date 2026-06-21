@@ -292,116 +292,128 @@ class TinyAPIPlugin(Star):
                 return "video"
         return None
 
-    def _format_result(self, result: Dict[str, Any]) -> tuple:
+    def _format_result(self, result: Dict[str, Any]) -> List[tuple]:
         """格式化API返回结果 - 智能识别媒体类型
 
-        返回 (media_type, content) 元组：
-        - ("text", 文本内容)
+        返回 List[tuple]，每项为 (media_type, content)：
+        - ("text",  文本内容)
         - ("image", 图片URL)
         - ("audio", 音频URL)
         - ("video", 视频URL)
 
         优化策略：
         1. 如果data包含content键 → 纯文本
-        2. 递归搜索data中的媒体URL → 返回对应媒体类型，让bot直接发送媒体
+        2. 扫描data中的所有媒体URL和文字字段 → 分别收集，可同时返回多条
         3. 否则，输出格式化的JSON文本
         """
         if result.get("code") != 200:
-            return ("text", f"❌ 错误: {result.get('message', '未知错误')}")
+            return [("text", f"❌ 错误: {result.get('message', '未知错误')}")]
 
         data = result.get("data", {})
         if not data:
-            return ("text", "✅ 请求成功，但返回数据为空")
+            return [("text", "✅ 请求成功，但返回数据为空")]
 
-        # 递归搜索媒体URL的辅助函数
-        def _search_media(obj, depth: int = 0):
-            if depth > 4:  # 最多递归4层，防止无限递归
-                return None
-            if isinstance(obj, str) and obj.startswith("http"):
-                media_type = self._detect_media_from_url(obj)
-                if media_type:
-                    return (media_type, obj)
-            elif isinstance(obj, dict):
-                # 优先检查常见媒体键名
-                for key in obj:
-                    val = obj[key]
-                    if not isinstance(val, str) or not val.startswith("http"):
-                        continue
-                    key_lower = key.lower()
-                    # 图片类键名
-                    if any(k in key_lower for k in ["img", "pic", "image", "photo", "cover", "thumbnail", "screenshot", "snapshot"]):
-                        return ("image", val)
-                    # 音频类键名
-                    if any(k in key_lower for k in ["audio", "music", "voice", "sound", "mp3"]):
-                        return ("audio", val)
-                    # 视频类键名
-                    if any(k in key_lower for k in ["video", "movie", "film", "mp4"]):
-                        return ("video", val)
-                    # 通用链接键名 → 尝试用扩展名判断，失败则默认图片
-                    if any(k in key_lower for k in ["url", "link", "src", "address", "download", "href", "file"]):
+        results = []
+
+        # 收集媒体URL和文字字段的辅助函数
+        def _collect_all(obj, depth: int = 0, media=None, text_fields=None):
+            if media is None:
+                media = []
+            if text_fields is None:
+                text_fields = []
+            if depth > 4:
+                return media, text_fields
+            if isinstance(obj, dict):
+                for key, val in obj.items():
+                    if isinstance(val, str) and val.startswith("http"):
                         media_type = self._detect_media_from_url(val)
                         if media_type:
-                            return (media_type, val)
-                        # 无法判断扩展名时，默认当图片处理
-                        return ("image", val)
-                # 常见键名未匹配，递归搜索值
-                for val in obj.values():
-                    found = _search_media(val, depth + 1)
-                    if found:
-                        return found
+                            pair = (media_type, val)
+                            if pair not in media:
+                                media.append(pair)
+                            continue
+                    if isinstance(val, (str, int, float, bool)):
+                        key_str = str(key)
+                        val_str = str(val)
+                        # 跳过纯 HTTP 链接字段（已 above 处理）
+                        if isinstance(val, str) and val.startswith("http"):
+                            continue
+                        text_fields.append((key_str, val_str))
+                    elif isinstance(val, (dict, list)):
+                        _collect_all(val, depth + 1, media, text_fields)
             elif isinstance(obj, list):
                 for item in obj:
-                    found = _search_media(item, depth + 1)
-                    if found:
-                        return found
-            return None
+                    _collect_all(item, depth + 1, media, text_fields)
+            return media, text_fields
 
-        # data 是纯字符串：可能是直接返回的URL
+        # data 是字典
+        if isinstance(data, dict):
+            # 有 content 键 → 纯文本优先
+            if "content" in data:
+                content = data["content"]
+                results.append(("text", content if isinstance(content, str) else str(content)))
+                return results
+
+            media_list, text_fields = _collect_all(data)
+            # 添加所有媒体
+            for media_type, media_url in media_list:
+                results.append((media_type, media_url))
+            # 添加文字字段（去重）
+            if text_fields:
+                seen = set()
+                unique_parts = []
+                for k, v in text_fields:
+                    if k not in seen:
+                        seen.add(k)
+                        unique_parts.append(f"{k}：{v}")
+                if unique_parts:
+                    results.append(("text", "\n".join(unique_parts)))
+            # 既没有媒体也没有文字 → fallback
+            if not results:
+                try:
+                    results.append(("text", json.dumps(data, ensure_ascii=False, indent=2)))
+                except:
+                    results.append(("text", str(data)))
+            return results
+
+        # data 是纯字符串
         if isinstance(data, str):
             if data.startswith("http"):
                 media_type = self._detect_media_from_url(data)
                 if media_type:
-                    return (media_type, data)
-            return ("text", data)
+                    results.append((media_type, data))
+                    return results
+            results.append(("text", data))
+            return results
 
-        # data 是列表：尝试第一个元素
+        # data 是列表
         if isinstance(data, list) and data:
-            first = data[0]
-            if isinstance(first, str) and first.startswith("http"):
-                media_type = self._detect_media_from_url(first)
-                if media_type:
-                    return (media_type, first)
-            # 对列表中每个元素都搜索媒体URL
+            all_media = []
+            all_text = []
+            seen_media = set()
             for item in data:
-                found = _search_media(item, 0)
-                if found:
-                    logger.info(f"[TinyAPI] 从列表元素中识别到媒体: {found[0]} - {found[1][:80]}")
-                    return found
+                m, t = _collect_all(item)
+                for pair in m:
+                    if pair not in seen_media:
+                        seen_media.add(pair)
+                        all_media.append(pair)
+                all_text.extend(t)
+            for media_type, media_url in all_media:
+                results.append((media_type, media_url))
+            if all_text or (data and not all_media):
+                # 列表数据：把原始数据作为文字发给 LLM 改写
+                try:
+                    results.append(("text", json.dumps(data, ensure_ascii=False, indent=2)))
+                except:
+                    results.append(("text", str(data)))
+            return results
 
-        if isinstance(data, dict):
-            # 先检查是否是纯文本API（有content键）
-            if "content" in data:
-                content = data["content"]
-                return ("text", content if isinstance(content, str) else str(content))
-
-        # 递归搜索整个数据结构中的媒体URL
-        found = _search_media(data, 0)
-        if found:
-            logger.info(f"[TinyAPI] 递归识别到媒体: {found[0]} - {found[1][:80]}")
-            return found
-
-        # 检查是否是纯文本API（有content键）—— 对列表中的每个字典也检查
-        if isinstance(data, list):
-            for item in data:
-                if isinstance(item, dict) and "content" in item:
-                    content = item["content"]
-                    return ("text", content if isinstance(content, str) else str(content))
-
-        # 默认：输出完整JSON（格式化）
+        # 默认
         try:
-            return ("text", json.dumps(data, ensure_ascii=False, indent=2))
+            results.append(("text", json.dumps(data, ensure_ascii=False, indent=2)))
         except:
-            return ("text", str(data))
+            results.append(("text", str(data)))
+        return results
 
     async def _send_result(self, event: AstrMessageEvent, result: Dict[str, Any], api_name: str = "") -> None:
         """发送API调用结果
@@ -412,48 +424,90 @@ class TinyAPIPlugin(Star):
         - 视频URL → 直接发送视频
         - 文本   → 发送文本消息（若开启LLM改写则先改写）
         - 失败   → 发送错误信息
+        - 混合   → 同时发送媒体和文字（如API返回图片+描述）
         """
         # 判断API调用是否成功
         if result.get("code") == 200:
-            media_type, content = self._format_result(result)
-
-            if not content:
+            items = self._format_result(result)
+            if not items:
                 logger.warning(f"[TinyAPI] API返回数据为空: {api_name}")
                 return
 
-            if media_type == "image":
-                # 直接发送图片
-                logger.info(f"[TinyAPI] 发送图片: {content[:80]}")
-                event.set_result(MessageEventResult().url_image(content))
+            # 分离媒体项和文字项
+            media_items = [(t, c) for t, c in items if t in ("image", "video", "audio")]
+            text_items = [(t, c) for t, c in items if t == "text"]
 
-            elif media_type == "video":
-                # 直接发送视频
-                logger.info(f"[TinyAPI] 发送视频: {content[:80]}")
-                result_obj = MessageEventResult()
-                result_obj.chain.append(Comp.Video.fromURL(url=content))
-                event.set_result(result_obj)
-
-            elif media_type == "audio":
-                # 直接发送音频（语音消息）
-                logger.info(f"[TinyAPI] 发送音频: {content[:80]}")
-                result_obj = MessageEventResult()
-                result_obj.chain.append(Comp.Record(file=content, url=content))
-                event.set_result(result_obj)
-
-            else:
-                # 文本消息：若开启LLM改写则先改写
-                if self.enable_llm_rewrite:
+            # 准备文字内容（用于LLM改写或原文发送）
+            raw_data = result.get("data")
+            text_content = None
+            if text_items:
+                # 优先用原始数据让LLM改写（确保不遗漏字段）
+                if self.enable_llm_rewrite and raw_data is not None:
                     try:
-                        # 传原始 data 给 LLM，确保不遗漏任何字段
-                        raw_data = result.get("data")
-                        if raw_data is not None:
-                            rewritten = await self._call_llm_rewrite(event, raw_data, api_name)
-                            if rewritten:
-                                content = rewritten
+                        rewritten = await self._call_llm_rewrite(event, raw_data, api_name)
+                        if rewritten:
+                            text_content = rewritten
                     except Exception as e:
                         logger.warning(f"[TinyAPI] LLM改写失败，使用原文: {e}")
+                if not text_content:
+                    text_content = "\n\n".join(c for _, c in text_items)
 
-                event.set_result(MessageEventResult().message(content))
+            # 发送媒体内容 + 文字内容
+            result_obj = MessageEventResult()
+            sent_media = False
+            sent_text = False
+
+            # 先发文字（作为消息主体）
+            if text_content:
+                result_obj = MessageEventResult().message(text_content)
+                sent_text = True
+
+            # 媒体附加到结果中
+            for media_type, content in media_items:
+                if media_type == "image":
+                    logger.info(f"[TinyAPI] 发送图片: {content[:80]}")
+                    if sent_text:
+                        # 已有文字，图片用单独消息发送
+                        try:
+                            await event.send(MessageEventResult().url_image(content))
+                        except Exception:
+                            # send 不可用，合并到同一条消息
+                            pass
+                    else:
+                        result_obj = MessageEventResult().url_image(content)
+                    sent_media = True
+                    break
+                elif media_type == "video":
+                    logger.info(f"[TinyAPI] 发送视频: {content[:80]}")
+                    r = MessageEventResult()
+                    r.chain.append(Comp.Video.fromURL(url=content))
+                    if sent_text:
+                        try:
+                            await event.send(r)
+                        except Exception:
+                            pass
+                    else:
+                        event.set_result(r)
+                    sent_media = True
+                elif media_type == "audio":
+                    logger.info(f"[TinyAPI] 发送音频: {content[:80]}")
+                    r = MessageEventResult()
+                    r.chain.append(Comp.Record(file=content, url=content))
+                    if sent_text:
+                        try:
+                            await event.send(r)
+                        except Exception:
+                            pass
+                    else:
+                        event.set_result(r)
+                    sent_media = True
+
+            # 若没有单独发送结果，则发送
+            if not sent_media and text_content:
+                event.set_result(MessageEventResult().message(text_content))
+            elif sent_text and not sent_media:
+                event.set_result(result_obj)
+
         else:
             # 失败：发送错误信息
             error_msg = result.get('message', '未知错误')
@@ -734,8 +788,11 @@ class TinyAPIPlugin(Star):
             return
 
         user_id = event.get_sender_id()
-        message = event.message_str.strip()
-        message_lower = message.lower()
+        raw_message = event.message_str.strip()
+        # 去掉所有 ？/?（支持消息中间也带？的情况）
+        message_clean = raw_message.replace("？", "").replace("?", "")
+        is_help_query = raw_message.endswith("？") or raw_message.endswith("?")
+        message_lower = message_clean.lower()
 
         # 0. 先尝试提取图片（如果有），返回图片信息字典
         image_info = None
@@ -744,12 +801,20 @@ class TinyAPIPlugin(Star):
             logger.info(f"[TinyAPI] 用户 {user_id} 发送了图片: {image_info.get('path', '')[:60]}")
 
         # 1. 精确首词匹配（优先级最高）
-        tokens = message.split()
+        # 支持「关键词？」或「关键词?» 结尾时展示参数说明
+        tokens = message_clean.split()
         if tokens:
             first_word_lower = tokens[0].lower()
             if first_word_lower in self.keyword_map:
                 # 匹配到关键词，必须停止事件传播
                 event.stop_event()
+
+                # 以 ？/? 结尾 → 展示参数说明，不调用API
+                if is_help_query:
+                    api_info = self.keyword_api_info.get(first_word_lower, {})
+                    hint = self._build_usage_hint(api_info, first_word_lower)
+                    event.set_result(MessageEventResult().message(hint))
+                    return
 
                 path = self.keyword_map[first_word_lower]
                 api_info = self.keyword_api_info.get(first_word_lower, {})
@@ -855,9 +920,15 @@ class TinyAPIPlugin(Star):
                 return
 
         # 2. 子串匹配（兜底，仅用于短消息）
-        if len(message) <= 4:
+        if len(message_clean) <= 4:
             for keyword, path in self.keyword_map.items():
                 if keyword in message_lower:
+                    # 若以 ？/? 结尾 → 展示参数说明
+                    if is_help_query:
+                        api_info = self.keyword_api_info.get(keyword, {})
+                        hint = self._build_usage_hint(api_info, keyword)
+                        event.set_result(MessageEventResult().message(hint))
+                        return
                     api_info = self.keyword_api_info.get(keyword, {})
                     if api_info.get("required_params"):
                         continue
