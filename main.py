@@ -1,5 +1,5 @@
 """
-TinyAPI聚合插件 - 调用290+免费API接口
+TinyAPI - 调用290+免费API接口
 支持文本/图片/音频/视频返回，图片/音频/视频自动识别并直接发送
 
 行为（指令）说明：
@@ -232,7 +232,9 @@ class TinyAPIPlugin(Star):
             params["apikey"] = self.api_key
 
         url = f"{self.base_url}{path}"
-        logger.info(f"[TinyAPI] Calling {url} with params {params}")
+        # 日志脱敏：隐藏 apikey 完整值
+        safe_params = {k: ("***" if k == "apikey" else v) for k, v in params.items()}
+        logger.info(f"[TinyAPI] Calling {url} with params {safe_params}")
 
         try:
             async with aiohttp.ClientSession() as session:
@@ -442,9 +444,12 @@ class TinyAPIPlugin(Star):
                 # 文本消息：若开启LLM改写则先改写
                 if self.enable_llm_rewrite:
                     try:
-                        rewritten = await self._call_llm_rewrite(event, content, api_name)
-                        if rewritten:
-                            content = rewritten
+                        # 传原始 data 给 LLM，确保不遗漏任何字段
+                        raw_data = result.get("data")
+                        if raw_data is not None:
+                            rewritten = await self._call_llm_rewrite(event, raw_data, api_name)
+                            if rewritten:
+                                content = rewritten
                     except Exception as e:
                         logger.warning(f"[TinyAPI] LLM改写失败，使用原文: {e}")
 
@@ -466,11 +471,12 @@ class TinyAPIPlugin(Star):
 
     # ========== LLM 回复改写 ==========
 
-    async def _call_llm_rewrite(self, event: AstrMessageEvent, text: str, api_name: str = "") -> Optional[str]:
-        """调用LLM对API返回的文本进行人性化改写
+    async def _call_llm_rewrite(self, event: AstrMessageEvent, data: Any, api_name: str = "") -> Optional[str]:
+        """调用LLM对API返回的数据进行人性化改写
 
         使用AstrBot配置的对话大模型，让回复更像真人。
         若调用失败则返回None，上层会使用原文。
+        要求LLM保留数据中每一个字段，不得遗漏。
         """
         try:
             # 获取当前会话的模型ID
@@ -480,12 +486,22 @@ class TinyAPIPlugin(Star):
             logger.warning(f"[TinyAPI] 获取LLM provider_id失败: {e}")
             return None
 
-        # 构建提示词
+        # 将数据转为文本传给LLM
+        if isinstance(data, (dict, list)):
+            data_text = json.dumps(data, ensure_ascii=False, indent=2)
+        else:
+            data_text = str(data)
+
+        # 构建提示词——明确要求保留所有字段
         api_hint = f"（数据来源：{api_name}）" if api_name else ""
         prompt = (
-            f"以下是某个API接口{api_hint}返回的结果，请你用自然、口语化的方式告诉用户，"
-            f"不要出现JSON、结构化数据等机器感的内容，就像真人在聊天一样：\n\n"
-            f"{text}"
+            f"以下是某个API接口{api_hint}返回的数据，请以自然、口语化的方式告诉用户这些信息。\n\n"
+            f"【严格要求，必须遵守】：\n"
+            f"1. 必须把数据中每一个字段都体现出来，不得遗漏任何信息；\n"
+            f"2. 如果数据是列表（如多条车次、多个结果），每条记录都必须展示，不得只展示部分；\n"
+            f"3. 不得自行总结、删减或合并字段；\n"
+            f"4. 用真人聊天的语气表达，但不要丢失任何原始数据。\n\n"
+            f"【API返回数据】：\n{data_text}"
         )
 
         try:

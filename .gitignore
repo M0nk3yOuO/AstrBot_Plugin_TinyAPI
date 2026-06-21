@@ -1,0 +1,21 @@
+# AstrBot 本地配置（含用户 apikey，不提交）
+data/
+config/user_*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
