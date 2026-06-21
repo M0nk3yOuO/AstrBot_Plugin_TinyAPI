@@ -43,21 +43,13 @@ AstrBot 插件，聚合调用 TinyAPI 的 250+ API调用接口，支持关键词
 
 1. 前往 [Release 页面](https://github.com/M0nk3yOuO/AstrBot_Plugin_TinyAPI/releases) 下载最新版本
 2. 解压后得到 `AstrBot_Plugin_TinyAPI` 文件夹
-3. 将文件夹复制到 AstrBot 的 `data/plugins/` 目录下
-4. 重启 AstrBot 或在管理面板启用插件
+3. 点击AstrBot插件->右下角安装插件->安装.zip包并启用
 
-### 方法二：从源码安装
+### 方法二：从链接安装
 
-1. 克隆本仓库到本地：
-   ```bash
-   git clone https://github.com/M0nk3yOuO/AstrBot_Plugin_TinyAPI.git
-   ```
+点击AstrBot插件->右下角安装插件->从链接安装->https://github.com/M0nk3yOuO/AstrBot_Plugin_TinyAPI
 
-2. 将 `AstrBot_Plugin_TinyAPI` 文件夹复制到 AstrBot 的 `data/plugins/` 目录下
-
-3. 重启 AstrBot
-
-### 方法三：通过 AstrBot 管理面板安装
+### 方法三：通过 AstrBot 管理面板安装（暂不可用）
 
 1. 打开 AstrBot 管理面板
 2. 进入「插件市场」
@@ -68,7 +60,7 @@ AstrBot 插件，聚合调用 TinyAPI 的 250+ API调用接口，支持关键词
 
 ### 插件配置（通过 AstrBot 管理面板）
 
-在 AstrBot 管理面板 → 插件设置 → TinyAPI 聚合插件 中配置：
+在 AstrBot 管理面板 → 插件设置 → TinyAPI 中配置：
 
 | 配置项 | 类型 | 说明 | 默认值 |
 |--------|------|------|--------|
