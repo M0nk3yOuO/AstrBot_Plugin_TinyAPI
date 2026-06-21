@@ -959,6 +959,9 @@ class TinyAPIPlugin(Star):
 
         total = len(keyword_mappings)
 
+        # 每页底部提示备注
+        footer = "\n💡 左侧为关键词，关键词需严格对应，输入「关键词？」可询问Bot该功能如何使用\n"
+
         # 简洁头部
         header = "📋 TinyAPI 关键词列表（共 " + str(total) + " 个）\n\n"
 
@@ -968,11 +971,13 @@ class TinyAPIPlugin(Star):
         for kw, name in keyword_mappings:
             line = "  " + kw + " → " + name + "\n"
             if line_count >= 80 or len(current) + len(line) > 3500:
+                current += footer
                 pages.append(current)
                 current = header
                 line_count = 0
             current += line
             line_count += 1
+        current += footer
         pages.append(current)
 
         return pages
